@@ -9,14 +9,13 @@ __pycache__/
 *.so
 .Python
 env/
-build/
+venv/
+/build/
 develop-eggs/
 dist-egg/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
