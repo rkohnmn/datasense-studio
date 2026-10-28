@@ -1,0 +1,413 @@
+[
+  {
+    "id": "datamend-lab",
+    "index": "01",
+    "code": "DM \u00b7 01",
+    "stage": "Prepare",
+    "displayName": "DataMend Lab",
+    "tagline": "Clean the data. Preserve the meaning.",
+    "showcaseTheme": "From disorder to structure.",
+    "brandVoice": "Bring order to your data.",
+    "shortDescription": "Data inspection, cleaning, quality auditing, transformation, joining, reshaping, validation, and reproducible data preparation.",
+    "detailedDescription": "Convert messy, inconsistent, or poorly structured datasets into reliable analytical inputs without silently changing their meaning. DataMend Lab audits column schemas, flags sentinel missing values, standardizes dates and units, reshapes wide and long tables, and exports a deterministic transformation recipe alongside your cleaned dataset.",
+    "category": "preparation",
+    "categoryLabel": "Data Preparation & Quality Auditing",
+    "primaryPurpose": "Convert messy, inconsistent, or poorly structured datasets into reliable analytical inputs without silently changing their meaning.",
+    "primaryUseCases": [
+      "Diagnose messy spreadsheets, mixed data types, and sentinel missing values (e.g., -999, 'N/A')",
+      "Standardize heterogeneous timestamps into canonical ISO-8601 dates",
+      "Reshape wide report tables into tidy observation-per-row matrices",
+      "Join multi-table datasets and audit primary-key uniqueness without silent row drops",
+      "Export cleaned CSV/TSV files paired with a SHA-256 reproducible transformation log"
+    ],
+    "intendedAudience": [
+      "Data analysts",
+      "Researchers",
+      "Students",
+      "Instructors",
+      "Curious beginners"
+    ],
+    "liveWebsiteUrl": "https://rkohnmn.github.io/datamend-lab/",
+    "repositoryUrl": "https://github.com/rkohnmn/datamend-lab",
+    "screenshots": {
+      "primary": "public/product-screenshots/datamend-lab/datamend-lab-workspace.webp",
+      "fallbackPng": "public/product-screenshots/datamend-lab/datamend-lab-workspace.png",
+      "alt": "DataMend Lab workspace showing cell-level transformation diffs, ISO-8601 date standardization, sentinel missing value recoding, and a 4-step reproducible Tidyverse/JSON pipeline."
+    },
+    "logoMonogram": "DM",
+    "accentColor": "#0F6E56",
+    "relatedTools": [
+      "visualgrammar",
+      "resamplelab",
+      "forecastlab"
+    ],
+    "relevantWorkflows": [
+      "prep-to-viz",
+      "prep-to-infer",
+      "prep-to-forecast"
+    ],
+    "featureHighlights": [
+      "Non-destructive cell-level diff inspector",
+      "Schema & measurement-type validation (Nominal, Ordinal, Continuous, ISO-Date)",
+      "Explicit missingness auditing (zero silent row deletions)",
+      "Wide-to-long pivot reshaping & primary-key deduplication",
+      "Reproducible JSON & Tidyverse R recipe export"
+    ],
+    "supportedInputs": [
+      "CSV",
+      "TSV",
+      "Clipboard tabular paste",
+      "Bundled messy benchmark datasets"
+    ],
+    "typicalOutputs": [
+      "Cleaned tidy CSV/TSV",
+      "JSON transformation recipe",
+      "R Tidyverse pipeline script",
+      "Data quality audit summary"
+    ],
+    "navigationKeywords": [
+      "clean csv",
+      "messy data",
+      "missing values",
+      "duplicates",
+      "reshape",
+      "pivot",
+      "tidy data",
+      "join tables",
+      "spreadsheet",
+      "audit",
+      "prepare"
+    ],
+    "availabilityStatus": "live-configured",
+    "verifiedVersion": "1.4.0",
+    "lastVerificationTimestamp": "2026-10-27T15:24:36-04:00"
+  },
+  {
+    "id": "visualgrammar",
+    "index": "02",
+    "code": "VG \u00b7 02",
+    "stage": "Visualize",
+    "displayName": "VisualGrammar",
+    "tagline": "Understand the data. Choose the view.",
+    "showcaseTheme": "One dataset, many perspectives.",
+    "brandVoice": "Give your data the right perspective.",
+    "shortDescription": "Data-type classification, chart recommendations, graphical construction, visual interpretation, and visualization literacy.",
+    "detailedDescription": "Help users select, create, and interpret statistical visualizations grounded in perceptual psychometrics. VisualGrammar maps variable measurement types (nominal, ordinal, discrete, continuous, temporal) to the Cleveland\u2013McGill hierarchy of elementary perceptual tasks, compares alternative chart families side-by-side through Known Visualization Unity, and runs a 15-point pre-flight perceptual and accessibility audit.",
+    "category": "visualization",
+    "categoryLabel": "Statistical Visualization & Perceptual Grammar",
+    "primaryPurpose": "Help users select, create, and interpret statistical visualizations.",
+    "primaryUseCases": [
+      "Classify dataset variables and discover perceptually accurate chart encodings",
+      "Compare how histograms, KDEs, boxplots, violin plots, and beeswarms represent the same data",
+      "Audit charts for mathematical Lie Factor (0.95 to 1.05), zero-baseline rules, and direct labeling",
+      "Construct OKLCH perceptually uniform, deuteranopia/protanopia-safe palettes",
+      "Export declarative Vega-Lite specifications, publication SVGs, and ggplot2 code"
+    ],
+    "intendedAudience": [
+      "Students",
+      "Instructors",
+      "Data analysts",
+      "Researchers",
+      "Curious beginners"
+    ],
+    "liveWebsiteUrl": "https://rkohnmn.github.io/visualgrammar/",
+    "repositoryUrl": "https://github.com/rkohnmn/visualgrammar",
+    "screenshots": {
+      "primary": "public/product-screenshots/visualgrammar/visualgrammar-workspace.webp",
+      "fallbackPng": "public/product-screenshots/visualgrammar/visualgrammar-workspace.png",
+      "alt": "VisualGrammar workspace demonstrating Known Visualization Unity across three cohorts with identical group means (50.0) but distinct unimodal, bimodal, and skewed distributions alongside a 15-point perceptual audit."
+    },
+    "logoMonogram": "VG",
+    "accentColor": "#1D4ED8",
+    "relatedTools": [
+      "datamend-lab",
+      "quartetlab",
+      "forecastlab"
+    ],
+    "relevantWorkflows": [
+      "prep-to-viz",
+      "forecast-to-viz"
+    ],
+    "featureHighlights": [
+      "Cleveland\u2013McGill perceptual channel ranking engine",
+      "Known Visualization Unity side-by-side chart family comparator",
+      "15-point pre-flight Lie Factor & zero-baseline auditor",
+      "OKLCH perceptually uniform & colorblind-safe palette studio",
+      "Vega-Lite JSON, crisp SVG, and R ggplot2 code export"
+    ],
+    "supportedInputs": [
+      "Tidy CSV/TSV",
+      "Built-in canonical datasets",
+      "Variable schema definitions"
+    ],
+    "typicalOutputs": [
+      "SVG statistical graphics",
+      "Vega-Lite v5 declarative JSON specs",
+      "R ggplot2 script",
+      "15-point perceptual audit report"
+    ],
+    "navigationKeywords": [
+      "histogram",
+      "chart",
+      "plot",
+      "boxplot",
+      "violin",
+      "scatterplot",
+      "bar chart",
+      "colorblind",
+      "oklch",
+      "vega-lite",
+      "visualize",
+      "perception",
+      "lie factor"
+    ],
+    "availabilityStatus": "live-configured",
+    "verifiedVersion": "1.3.0",
+    "lastVerificationTimestamp": "2026-10-27T15:24:36-04:00"
+  },
+  {
+    "id": "quartetlab",
+    "index": "03",
+    "code": "QL \u00b7 03",
+    "stage": "Investigate",
+    "displayName": "QuartetLab",
+    "tagline": "Same statistics. Different stories.",
+    "showcaseTheme": "The numbers don't tell the whole story.",
+    "brandVoice": "Discover what summaries conceal.",
+    "shortDescription": "Interactive bivariate dataset synthesis, exact-moment control, correlation, regression, residual analysis, and diagnostic exploration.",
+    "detailedDescription": "Reveal how datasets with identical summary statistics (means, standard deviations, correlation r, and OLS regression lines) can conceal radically different geometric structures, curvature, and high-leverage anomalies. QuartetLab pairs an interactive 60fps bivariate canvas and Gram-Schmidt exact-moment solver with synchronized Residual vs. Fitted and Normal Q-Q plots, live Cook's distance halos, and Minitab/R-standard regression output.",
+    "category": "regression",
+    "categoryLabel": "Bivariate Synthesis & Regression Diagnostics",
+    "primaryPurpose": "Reveal how datasets with similar statistical summaries can behave very differently.",
+    "primaryUseCases": [
+      "Drag observations in real time while locking exact sample moments (x\u0304, s_x, y\u0304, s_y, r, R\u00b2)",
+      "Investigate Anscombe's Quartet, non-linear curvature traps, and high-leverage outliers",
+      "Inspect synchronized Residuals vs. Fitted (e_i vs. y\u0302_i) and Normal Q-Q diagnostic canvases",
+      "Audit point-by-point leverage (h_i), standardized residuals, and Cook's distance (D_i > 4/n)",
+      "Export datasets and Minitab/R regression tables to CSV, R, Python, LaTeX, TI-84, or printable FRQ worksheets"
+    ],
+    "intendedAudience": [
+      "Instructors",
+      "Students",
+      "Researchers",
+      "Data analysts",
+      "Curious beginners"
+    ],
+    "liveWebsiteUrl": "https://rkohnmn.github.io/quartetlab/",
+    "repositoryUrl": "https://github.com/rkohnmn/quartetlab",
+    "screenshots": {
+      "primary": "public/product-screenshots/quartetlab/quartetlab-workspace.webp",
+      "fallbackPng": "public/product-screenshots/quartetlab/quartetlab-workspace.png",
+      "alt": "QuartetLab dual-canvas workbench showing Anscombe III bivariate scatterplot with OLS line, Cook's distance vermilion halo on Observation #3, synchronized Residuals vs Fitted and Normal Q-Q plots, and Minitab/R regression output table."
+    },
+    "logoMonogram": "QL",
+    "accentColor": "#0F6E56",
+    "relatedTools": [
+      "visualgrammar",
+      "resamplelab",
+      "datamend-lab"
+    ],
+    "relevantWorkflows": [
+      "regression-to-infer",
+      "prep-to-viz"
+    ],
+    "featureHighlights": [
+      "Live Gram-Schmidt exact-moment lock solver",
+      "Synchronized Scatter, Residual (e_i vs. y\u0302_i), and Normal Q-Q canvases",
+      "Cook's distance (D_i > 4/n) and high-leverage (h_i > 4/n) visual halos",
+      "Minitab / R / AP-standard regression computer output table",
+      "One-click export to CSV, R, Python, TI-84 lists, LaTeX, and FRQ PDF worksheets"
+    ],
+    "supportedInputs": [
+      "Interactive canvas drawing/dragging",
+      "Anscombe & diagnostic presets",
+      "CSV bivariate (x, y) upload"
+    ],
+    "typicalOutputs": [
+      "Bivariate CSV",
+      "R/Python regression script",
+      "LaTeX regression table",
+      "TI-84 L1/L2 lists",
+      "Printable FRQ worksheet"
+    ],
+    "navigationKeywords": [
+      "regression",
+      "correlation",
+      "anscombe",
+      "quartet",
+      "residuals",
+      "cooks distance",
+      "leverage",
+      "outlier",
+      "ols",
+      "slope",
+      "r-squared",
+      "bivariate"
+    ],
+    "availabilityStatus": "live-configured",
+    "verifiedVersion": "2.1.0",
+    "lastVerificationTimestamp": "2026-10-27T15:24:36-04:00"
+  },
+  {
+    "id": "resamplelab",
+    "index": "04",
+    "code": "RL \u00b7 04",
+    "stage": "Infer",
+    "displayName": "ResampleLab",
+    "tagline": "Explore randomness. Measure uncertainty.",
+    "showcaseTheme": "See uncertainty take shape.",
+    "brandVoice": "Make uncertainty visible.",
+    "shortDescription": "Probability, sampling, bootstrap confidence intervals, permutation testing, computational inference, and simulation.",
+    "detailedDescription": "Help users understand randomness, quantify uncertainty, and investigate statistical evidence through direct computational experiments. ResampleLab makes the distinction between raw sample data, bootstrap resampling with replacement (for confidence intervals and standard errors), and null-model permutation shuffling (for exact and randomization p-values) visually concrete and reproducible via seeded PRNGs.",
+    "category": "inference",
+    "categoryLabel": "Computational Inference, Bootstrap & Simulation",
+    "primaryPurpose": "Help users understand randomness, quantify uncertainty, and investigate statistical evidence.",
+    "primaryUseCases": [
+      "Construct nonparametric percentile, studentized-t, and bootstrap confidence intervals",
+      "Run one-sample, two-sample, matched-pairs, and regression permutation hypothesis tests",
+      "Compare empirical bootstrap distributions against classical normal and Student-t approximations",
+      "Explore Central Limit Theorem convergence and sampling variability across sample sizes",
+      "Export reproducible simulation summaries, seeded draw logs, and R/Python resampling scripts"
+    ],
+    "intendedAudience": [
+      "Students",
+      "Instructors",
+      "Researchers",
+      "Data analysts",
+      "Curious beginners"
+    ],
+    "liveWebsiteUrl": "https://rkohnmn.github.io/resamplelab/",
+    "repositoryUrl": "https://github.com/rkohnmn/resamplelab",
+    "screenshots": {
+      "primary": "public/product-screenshots/resamplelab/resamplelab-workspace.webp",
+      "fallbackPng": "public/product-screenshots/resamplelab/resamplelab-workspace.png",
+      "alt": "ResampleLab workspace displaying a 10,000-replicate bootstrap distribution for a skewed sample median, highlighting the 95% percentile confidence interval [39.15, 46.72], vermilion 2.5% tails, and method comparison table."
+    },
+    "logoMonogram": "RL",
+    "accentColor": "#D9381E",
+    "relatedTools": [
+      "quartetlab",
+      "datamend-lab",
+      "visualgrammar"
+    ],
+    "relevantWorkflows": [
+      "prep-to-infer",
+      "regression-to-infer"
+    ],
+    "featureHighlights": [
+      "Deterministic seeded PRNG for 100% reproducible simulations",
+      "Side-by-side Bootstrap (with replacement) vs. Permutation (null shuffle) engines",
+      "Live comparison of Percentile, Studentized-t*, and Classical intervals",
+      "Interactive step-by-step single-draw and 10,000-draw batch visualizer",
+      "Explicit scope guardrails distinguishing sampling error from selection bias"
+    ],
+    "supportedInputs": [
+      "Single or two-group CSV columns",
+      "Paired measurements",
+      "Parametric & skewed population generators"
+    ],
+    "typicalOutputs": [
+      "Bootstrap replicate CSV",
+      "Interval comparison summary",
+      "R boot / infer script",
+      "High-DPI distribution SVG"
+    ],
+    "navigationKeywords": [
+      "bootstrap",
+      "permutation",
+      "confidence interval",
+      "p-value",
+      "hypothesis test",
+      "sampling distribution",
+      "monte carlo",
+      "randomness",
+      "uncertainty",
+      "simulation",
+      "clt"
+    ],
+    "availabilityStatus": "live-configured",
+    "verifiedVersion": "1.6.0",
+    "lastVerificationTimestamp": "2026-10-27T15:24:36-04:00"
+  },
+  {
+    "id": "forecastlab",
+    "index": "05",
+    "code": "FL \u00b7 05",
+    "stage": "Forecast",
+    "displayName": "ForecastLab",
+    "tagline": "Understand patterns. Forecast what comes next.",
+    "showcaseTheme": "Look ahead with perspective.",
+    "brandVoice": "Explore what comes next.",
+    "shortDescription": "Time-series exploration, decomposition, forecasting methods, temporal cross-validation, uncertainty, and model diagnostics.",
+    "detailedDescription": "Make statistically responsible forecasts and understand their reliability. ForecastLab implements the complete tidy forecasting workflow: chronological indexing, STL trend-seasonality-remainder decomposition, benchmark baselines (Na\u00efve, Seasonal Na\u00efve, Drift), ETS state-space and SARIMA modeling, rolling-origin temporal cross-validation, innovation residual autocorrelation diagnostics, and calibrated 80%/95% prediction interval fan charts.",
+    "category": "forecasting",
+    "categoryLabel": "Time-Series Decomposition & Predictive Forecasting",
+    "primaryPurpose": "Make statistically responsible forecasts and understand their reliability.",
+    "primaryUseCases": [
+      "Decompose time series into Trend (T_t), Seasonal (S_t), and Remainder (R_t) components via STL",
+      "Compare ETS state-space and SARIMA models against Seasonal Na\u00efve and Drift benchmarks",
+      "Evaluate out-of-sample accuracy across rolling forecast origins using MASE, RMSE, and MAE",
+      "Inspect innovation residual ACF/PACF correlograms and Ljung-Box white-noise diagnostics",
+      "Communicate future uncertainty honestly with 80% and 95% prediction interval fan charts"
+    ],
+    "intendedAudience": [
+      "Data analysts",
+      "Researchers",
+      "Students",
+      "Instructors"
+    ],
+    "liveWebsiteUrl": "https://rkohnmn.github.io/forecastlab/",
+    "repositoryUrl": "https://github.com/rkohnmn/forecastlab",
+    "screenshots": {
+      "primary": "public/product-screenshots/forecastlab/forecastlab-workspace.webp",
+      "fallbackPng": "public/product-screenshots/forecastlab/forecastlab-workspace.png",
+      "alt": "ForecastLab workspace showing historical monthly series, forecast origin divider, ETS damped trend point predictions with 80% and 95% prediction interval fans, STL decomposition panels, MASE accuracy leaderboard, and residual ACF plot."
+    },
+    "logoMonogram": "FL",
+    "accentColor": "#0F6E56",
+    "relatedTools": [
+      "datamend-lab",
+      "visualgrammar",
+      "resamplelab"
+    ],
+    "relevantWorkflows": [
+      "prep-to-forecast",
+      "forecast-to-viz"
+    ],
+    "featureHighlights": [
+      "STL additive & Box-Cox transformed seasonal decomposition",
+      "Mandatory benchmark comparison (Seasonal Na\u00efve, Drift, Mean)",
+      "Chronological train/test holdout & rolling-origin cross-validation",
+      "Innovation residual ACF/PACF and Ljung-Box portmanteau diagnostics",
+      "Calibrated 80% and 95% prediction interval ribbons & R fable/feasts export"
+    ],
+    "supportedInputs": [
+      "Chronological CSV/TSV (date/time index + value)",
+      "Bundled macro, energy, and ecological time series"
+    ],
+    "typicalOutputs": [
+      "Forecast horizon table with 80%/95% prediction intervals (CSV)",
+      "Model accuracy leaderboard",
+      "R tsibble / feasts / fable script",
+      "Forecast fan chart SVG"
+    ],
+    "navigationKeywords": [
+      "forecast",
+      "time series",
+      "arima",
+      "sarima",
+      "ets",
+      "exponential smoothing",
+      "stl",
+      "seasonality",
+      "trend",
+      "autocorrelation",
+      "acf",
+      "mase",
+      "prediction interval"
+    ],
+    "availabilityStatus": "live-configured",
+    "verifiedVersion": "1.5.0",
+    "lastVerificationTimestamp": "2026-10-27T15:24:36-04:00"
+  }
+]

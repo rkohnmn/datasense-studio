@@ -1,0 +1,32 @@
+{
+  "name": "DataSense Studio",
+  "shortName": "DataSense",
+  "monogram": "DS \u00b7 ATELIER",
+  "positioning": "Serious statistical tools, made approachable.",
+  "supportingIdea": "Five focused laboratories. One connected way to understand data.",
+  "heroHeadline": "A clearer way to work with data.",
+  "heroSubheadline": "Five connected statistical tools to clean, visualize, investigate, test, and forecast\u2014right in your browser.",
+  "designDirection": "The Modern Statistical Atelier",
+  "canonicalHubUrl": "https://rkohnmn.github.io/",
+  "githubOrgUrl": "https://github.com/rkohnmn",
+  "journeyStages": [
+    "Prepare",
+    "Explore",
+    "Visualize",
+    "Investigate",
+    "Infer",
+    "Forecast"
+  ],
+  "tokens": {
+    "primary": "#0F6E56",
+    "secondary": "#D9381E",
+    "surface": "#FFFFFF",
+    "background": "#F6F4EE",
+    "darkBackground": "#0D1014",
+    "darkSurface": "#151921",
+    "text": "#141619",
+    "textMuted": "#525866",
+    "border": "#D8D4C8",
+    "accentHighlight": "#1D4ED8"
+  }
+}

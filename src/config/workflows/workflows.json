@@ -1,0 +1,117 @@
+[
+  {
+    "id": "prep-to-viz",
+    "code": "WF \u00b7 01",
+    "title": "Data Preparation to Perceptual Visualization",
+    "shortTitle": "Clean & Visualize",
+    "summary": "Audit and standardize messy raw tables in DataMend Lab, then export a tidy CSV to discover perceptually honest encodings in VisualGrammar.",
+    "whyConnected": "A chart is only as truthful as its underlying denominator and variable schema. Cleaning sentinel values (-999) and deduplicating primary keys prevents distorted visual distributions.",
+    "stages": [
+      {
+        "step": "01",
+        "productId": "datamend-lab",
+        "role": "Audit & Tidy Schema",
+        "action": "Standardize mixed dates, recode sentinel strings to explicit NA, and reshape wide columns into a tidy observation-per-row table."
+      },
+      {
+        "step": "02",
+        "productId": "visualgrammar",
+        "role": "Map Variables to Perceptual Channels",
+        "action": "Load the exported tidy CSV into VisualGrammar, match variable types to Cleveland\u2013McGill Rank 1\u20133 encodings, and verify Lie Factor = 1.00."
+      }
+    ],
+    "transferMethod": "File-based handoff: Export validated UTF-8 CSV from DataMend Lab and import directly into VisualGrammar's Chart Studio (no external server upload)."
+  },
+  {
+    "id": "prep-to-infer",
+    "code": "WF \u00b7 02",
+    "title": "Data Preparation to Computational Inference",
+    "shortTitle": "Prepare & Test",
+    "summary": "Verify unit-level independence and clean numeric measurements in DataMend Lab before running bootstrap confidence intervals or permutation tests in ResampleLab.",
+    "whyConnected": "Bootstrap resampling and permutation tests assume each row represents a valid observational unit. Duplicate records or unstripped unit strings corrupt resampled standard errors.",
+    "stages": [
+      {
+        "step": "01",
+        "productId": "datamend-lab",
+        "role": "Validate Observational Units",
+        "action": "Confirm primary-key uniqueness, strip unit suffixes from numeric columns, and isolate missing values transparently."
+      },
+      {
+        "step": "02",
+        "productId": "resamplelab",
+        "role": "Quantify Sampling Uncertainty",
+        "action": "Import the clean numeric/group columns into ResampleLab to run 10,000 bootstrap replicates or two-sample randomization tests."
+      }
+    ],
+    "transferMethod": "File-based handoff: Export clean numeric/group CSV from DataMend Lab and load into ResampleLab."
+  },
+  {
+    "id": "regression-to-infer",
+    "code": "WF \u00b7 03",
+    "title": "Regression Diagnostics to Resampling Inference",
+    "shortTitle": "Investigate & Infer",
+    "summary": "Inspect bivariate structure, leverage, and residual normality in QuartetLab, then move to ResampleLab when non-normal residuals or outliers call for bootstrap slope intervals.",
+    "whyConnected": "Classical OLS t-intervals rely on normal, homoscedastic errors. When QuartetLab's Normal Q-Q or Cook's distance diagnostics reveal skewness or influential points, ResampleLab provides nonparametric bootstrap slope intervals.",
+    "stages": [
+      {
+        "step": "01",
+        "productId": "quartetlab",
+        "role": "Diagnose OLS Assumptions & Leverage",
+        "action": "Examine scatter geometry, Residuals vs. Fitted, Normal Q-Q plots, and Cook's distance (D_i > 4/n)."
+      },
+      {
+        "step": "02",
+        "productId": "resamplelab",
+        "role": "Bootstrap Regression Slope & Permutation Test",
+        "action": "Export bivariate pairs (x_i, y_i) from QuartetLab and construct bootstrap confidence intervals for \u03b2\u2081 or permutation null distributions for r."
+      }
+    ],
+    "transferMethod": "File-based handoff: Export bivariate CSV from QuartetLab and import into ResampleLab's bivariate resampling mode."
+  },
+  {
+    "id": "prep-to-forecast",
+    "code": "WF \u00b7 04",
+    "title": "Time-Series Preparation to Statistical Forecasting",
+    "shortTitle": "Prepare & Forecast",
+    "summary": "Regularize irregular timestamps, sort chronologically, and audit explicit calendar gaps in DataMend Lab before decomposing and forecasting in ForecastLab.",
+    "whyConnected": "STL decomposition, ETS, and SARIMA models require a strictly ordered, regularly spaced temporal index (tsibble structure). Unsorted dates or implicit missing months invalidate lag operators and ACF calculations.",
+    "stages": [
+      {
+        "step": "01",
+        "productId": "datamend-lab",
+        "role": "Regularize Temporal Index",
+        "action": "Coerce mixed date formats to ISO-8601 (YYYY-MM-DD), deduplicate timestamps, and make implicit time gaps explicit."
+      },
+      {
+        "step": "02",
+        "productId": "forecastlab",
+        "role": "Decompose, Cross-Validate & Forecast",
+        "action": "Load the regularized series into ForecastLab to run STL decomposition, compare ETS/SARIMA against Seasonal Na\u00efve via MASE, and project 80%/95% prediction intervals."
+      }
+    ],
+    "transferMethod": "File-based handoff: Export chronologically sorted ISO-8601 CSV from DataMend Lab and load into ForecastLab."
+  },
+  {
+    "id": "forecast-to-viz",
+    "code": "WF \u00b7 05",
+    "title": "Forecasting Output to Publication Graphics",
+    "shortTitle": "Forecast & Present",
+    "summary": "Generate calibrated point forecasts and 80%/95% prediction intervals in ForecastLab, then refine multi-series comparisons and perceptual color palettes in VisualGrammar.",
+    "whyConnected": "Communicating forecasts to decision-makers requires distinguishing historical observations from projected horizons and encoding uncertainty bands with colorblind-safe OKLCH contrast.",
+    "stages": [
+      {
+        "step": "01",
+        "productId": "forecastlab",
+        "role": "Generate Calibrated Forecast Horizon Table",
+        "action": "Fit and cross-validate time-series models, then export historical values alongside point predictions and 80%/95% lower/upper bounds."
+      },
+      {
+        "step": "02",
+        "productId": "visualgrammar",
+        "role": "Audit & Style Publication Visualization",
+        "action": "Import the forecast table into VisualGrammar to apply OKLCH palettes, direct terminal labels, and pass the 15-point pre-flight audit."
+      }
+    ],
+    "transferMethod": "File-based handoff: Export forecast CSV or SVG from ForecastLab and open in VisualGrammar."
+  }
+]

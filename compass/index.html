@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataSense Compass — Intelligent Data Discovery, Quality Gating & Routing</title>
+  <meta name="description" content="DataSense Compass profiles your dataset client-side, gates data readiness, surfaces family-separated relationships, and routes you to the exact statistical laboratory." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="author" content="rkohnmn — DataSense Studio" />
+  <meta name="keywords" content="DataSense Studio, DataSense Compass, statistical software, browser data analysis, DataMend Lab, VisualGrammar, QuartetLab, ResampleLab, ForecastLab, Anscombe quartet, bootstrap confidence intervals, STL decomposition, exploratory data analysis" />
+  <meta name="theme-color" content="#F6F4EE" />
+  <link rel="canonical" href="https://rkohnmn.github.io/datasense-studio/compass/" />
+  <link rel="manifest" href="../site.webmanifest" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:site_name" content="DataSense Studio" />
+  <meta property="og:title" content="DataSense Compass — Intelligent Data Discovery, Quality Gating & Routing" />
+  <meta property="og:description" content="DataSense Compass profiles your dataset client-side, gates data readiness, surfaces family-separated relationships, and routes you to the exact statistical laboratory." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rkohnmn.github.io/datasense-studio/compass/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://rkohnmn.github.io/datasense-studio/assets/screenshots/quartetlab.png" />
+  <meta property="og:image:width" content="1800" />
+  <meta property="og:image:height" content="1125" />
+  <meta property="og:image:alt" content="DataSense Studio — Statistical Instrument Ecosystem Workspace" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DataSense Compass — Intelligent Data Discovery, Quality Gating & Routing" />
+  <meta name="twitter:description" content="DataSense Compass profiles your dataset client-side, gates data readiness, surfaces family-separated relationships, and routes you to the exact statistical laboratory." />
+  <meta name="twitter:image" content="https://rkohnmn.github.io/datasense-studio/assets/screenshots/quartetlab.png" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D1014'/%3E%3Cpath d='M7 22 L13 14 L18 18 L25 9' stroke='%2310B981' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='25' cy='9' r='2.5' fill='%23D9381E'/%3E%3C/svg%3E" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://rkohnmn.github.io/datasense-studio/#website",
+      "name": "DataSense Studio",
+      "url": "https://rkohnmn.github.io/datasense-studio/",
+      "description": "Unified browser-native statistical instrument ecosystem and intelligent discovery hub.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://rkohnmn.github.io/datasense-studio/#apps",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://rkohnmn.github.io/datasense-studio/#app-studio",
+      "name": "DataSense Studio",
+      "applicationCategory": "ScientificApplication",
+      "operatingSystem": "Web Browser",
+      "url": "https://rkohnmn.github.io/datasense-studio/",
+      "description": "Unified suite of five browser-based statistical and data-analysis laboratories with DataSense Compass intelligent dataset profiling and routing.",
+      "author": {
+        "@type": "Person",
+        "name": "rkohnmn"
+      },
+      "hasPart": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "DataMend Lab",
+          "url": "https://rkohnmn.github.io/datamend-lab/",
+          "description": "01 \u00b7 Prepare \u2014 Audit hygiene, parse formats, impute sentinels, and export clean data."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "VisualGrammar",
+          "url": "https://rkohnmn.github.io/visualgrammar/",
+          "description": "02 \u00b7 Visualize \u2014 Grammar of Graphics exploratory canvas with interactive encodings."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "QuartetLab",
+          "url": "https://rkohnmn.github.io/quartetlab/",
+          "description": "03 \u00b7 Investigate \u2014 Anscombe quartet, Simpson's paradox, and bivariate diagnostics."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "ResampleLab",
+          "url": "https://rkohnmn.github.io/resamplelab/",
+          "description": "04 \u00b7 Infer \u2014 Bootstrap confidence intervals and permutation inference."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "ForecastLab",
+          "url": "https://rkohnmn.github.io/forecastlab/",
+          "description": "05 \u00b7 Forecast \u2014 STL decomposition, seasonality modeling, and horizon forecasting."
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://rkohnmn.github.io/datasense-studio/#app-compass",
+      "name": "DataSense Compass",
+      "applicationCategory": "ScientificApplication",
+      "operatingSystem": "Web Browser",
+      "url": "https://rkohnmn.github.io/datasense-studio/compass/",
+      "description": "Intelligent browser-native dataset profiler, readiness gate, relationship explorer, and ecosystem router.",
+      "isPartOf": {
+        "@id": "https://rkohnmn.github.io/datasense-studio/#website"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://rkohnmn.github.io/datasense-studio/#laboratories",
+      "name": "DataSense Statistical Laboratories",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "DataMend Lab",
+          "url": "https://rkohnmn.github.io/datamend-lab/",
+          "description": "Audit hygiene, parse formats, impute sentinels, and export clean data."
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "VisualGrammar",
+          "url": "https://rkohnmn.github.io/visualgrammar/",
+          "description": "Grammar of Graphics exploratory canvas with interactive encodings."
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "QuartetLab",
+          "url": "https://rkohnmn.github.io/quartetlab/",
+          "description": "Anscombe quartet, Simpson's paradox, and bivariate diagnostics."
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "ResampleLab",
+          "url": "https://rkohnmn.github.io/resamplelab/",
+          "description": "Bootstrap confidence intervals and permutation inference."
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "ForecastLab",
+          "url": "https://rkohnmn.github.io/forecastlab/",
+          "description": "STL decomposition, seasonality modeling, and horizon forecasting."
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+  <script>
+    (function() {
+      if (window.navigator && window.navigator.webdriver) return;
+      var l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap";
+      document.head.appendChild(l);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- STICKY HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <button type="button" class="brand-lockup" onclick="navigateTo('home')" aria-label="DataSense Studio Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2">
+            <circle cx="7" cy="16" r="2.2" fill="#34D399"/>
+            <circle cx="12" cy="10" r="2.2" fill="#F3F4F6"/>
+            <circle cx="17" cy="6" r="2.2" fill="#D9381E" stroke="#D9381E"/>
+            <path d="M4 19L20 5" stroke="#9CA3AF" stroke-width="1.4" stroke-dasharray="2 2"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-title">DataSense Studio</span>
+          <span class="brand-sub">Statistical Instrument Atelier</span>
+        </span>
+      </button>
+
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <button type="button" class="nav-btn active" data-route="home" onclick="navigateTo('home')">Overview</button>
+        <button type="button" class="nav-btn" data-route="compass" onclick="navigateTo('compass')" style="color:var(--accent-emerald);font-weight:600;">Compass ✦</button>
+        <button type="button" class="nav-btn" data-route="apps" onclick="navigateTo('apps')">Applications (5)</button>
+        <button type="button" class="nav-btn" data-route="workflows" onclick="navigateTo('workflows')">Workflows</button>
+        <button type="button" class="nav-btn" data-route="finder" onclick="navigateTo('finder')">Find Your Tool</button>
+        <button type="button" class="nav-btn" data-route="learn" onclick="navigateTo('learn')">Learn</button>
+        <button type="button" class="nav-btn" data-route="methods" onclick="navigateTo('methods')">Standards</button>
+        <button type="button" class="nav-btn" data-route="about" onclick="navigateTo('about')">About</button>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="theme-switch-btn" id="theme-toggle-btn" onclick="toggleAtelierTheme()" aria-label="Switch between Archival Paper and Obsidian Dark appearance"><span id="theme-toggle-icon">☾</span><span class="theme-lbl-text" id="theme-toggle-label">Obsidian</span></button>
+        <button type="button" class="fav-trigger-btn" id="fav-drawer-trigger" onclick="openFavouritesDrawer()" aria-label="Open saved favourites and folders"><span>♥ Saved</span><span class="fav-count-pill mono-num" id="fav-count-badge">3</span></button>
+        <button type="button" class="search-trigger" onclick="openSearchModal()" aria-label="Search ecosystem">
+          <span>Search ecosystem…</span>
+          <span class="kbd-pill">/</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="scrollToSection('product-showcases')">Explore Labs</button>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" onclick="toggleMobileMenu()">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="modal-backdrop" id="mobile-backdrop" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0.75rem;border-bottom:1px solid var(--border-hairline);">
+      <strong style="font-family:var(--font-display);font-size:1.3rem;">DataSense Studio</strong>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="closeMobileMenu()">Close ✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('home');closeMobileMenu();"><span>Overview &amp; Flagship Hub</span><span class="mono-num">00</span></button>
+      <button type="button" class="btn btn-emerald" style="justify-content:space-between;" onclick="navigateTo('compass');closeMobileMenu();"><span>DataSense Compass Workspace</span><span class="mono-num">CMP</span></button>
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('apps');closeMobileMenu();"><span>Applications Directory</span><span class="mono-num">05</span></button>
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('workflows');closeMobileMenu();"><span>Connected Workflows</span><span class="mono-num">WF</span></button>
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('finder');closeMobileMenu();"><span>Find Your Tool Engine</span><span class="mono-num">REC</span></button>
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('learn');closeMobileMenu();"><span>Learning Pathways</span><span class="mono-num">EDU</span></button>
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('methods');closeMobileMenu();"><span>Methods &amp; Standards</span><span class="mono-num">STD</span></button>
+      <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('about');closeMobileMenu();"><span>About the Atelier</span><span class="mono-num">INF</span></button>
+    </div>
+    <div style="margin-top:0.5rem;padding-top:0.75rem;border-top:1px solid var(--border-hairline);">
+      <div style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.5rem;">Direct Application Launch</div>
+      <div id="mobile-direct-links" style="display:flex;flex-direction:column;gap:0.4rem;"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- =================================================================
+         VIEW: HOME (FLAGSHIP ATELIER HUB)
+         ================================================================= -->
+    <div class="view-section active" id="view-home">
+
+      <!-- 1. HERO WITH LIVE TACTILE STATISTICAL SANDBOX -->
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero-top-bar">
+            <div class="atelier-kicker">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              <span>DataSense Studio · Five Browser-Native Statistical Labs · 100% Local &amp; Private</span>
+            </div>
+            <div class="hero-stage-ribbon" id="hero-stage-pills" role="tablist" aria-label="Analytical Lifecycle Stages">
+              <button type="button" class="stage-pill" onclick="selectHeroStage(0)">01 Prepare</button>
+              <button type="button" class="stage-pill" onclick="selectHeroStage(1)">02 Visualize</button>
+              <button type="button" class="stage-pill active" onclick="selectHeroStage(2)">03 Investigate</button>
+              <button type="button" class="stage-pill" onclick="selectHeroStage(3)">04 Infer</button>
+              <button type="button" class="stage-pill" onclick="selectHeroStage(4)">05 Forecast</button>
+            </div>
+          </div>
+
+          <div class="hero-grid">
+            <!-- Left Column: Editorial Positioning + Active Stage Spotlight -->
+            <div class="hero-copy-col">
+              <div>
+                <h1 class="hero-headline" id="hero-title">
+                  A clearer way to work with data — built to expose what summary tables hide.
+                </h1>
+                <p class="hero-lead" style="margin-top:1rem;">
+                  Five connected tools for cleaning, visualizing, investigating, testing, and forecasting your data. Everything runs locally in your browser with zero server uploads — so you can audit raw tables, verify visual encodings, and test statistical assumptions with confidence.
+                </p>
+              </div>
+
+              <!-- Dynamic Active Instrument Spotlight Card -->
+              <div class="hero-active-spotlight">
+                <div class="spotlight-header">
+                  <span class="spotlight-badge" id="hero-preview-code">03 · INVESTIGATE</span>
+                  <span class="mono-num" style="font-size:0.73rem;color:var(--ink-muted);" id="hero-preview-stage">Interactive Sandbox Active →</span>
+                </div>
+                <h2 class="spotlight-title" id="hero-preview-title">QuartetLab</h2>
+                <div class="spotlight-tagline" id="hero-preview-tagline">Same statistics. Different stories.</div>
+                <p class="spotlight-desc" id="hero-preview-desc">
+                  Drag the vermilion outlier on the right or switch presets to see how distinct coordinate geometries yield identical scalar summaries, and how one high-leverage point pulls the Ordinary Least Squares slope.
+                </p>
+                <div class="spotlight-actions">
+                  <a id="hero-open-app" href="https://rkohnmn.github.io/quartetlab/" target="_blank" rel="noopener noreferrer" class="btn btn-emerald btn-sm">Open QuartetLab ↗</a>
+                  <a id="hero-view-source" href="https://github.com/rkohnmn/quartetlab" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">View Source</a>
+                  <button type="button" id="hero-inspect-detail" class="btn btn-secondary btn-sm" onclick="inspectCurrentHeroApp()">Specs</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="hero-fav-btn" onclick="toggleHeroFavourite()">♥ Save</button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="copyHeroRecipe()">⎘ Copy Recipe</button>
+                </div>
+              </div>
+
+              <div class="hero-cta-cluster">
+                <button type="button" class="btn btn-emerald" id="hero-start-data-btn" onclick="scrollToSection('compass-home-entry')">Start with Your Data →</button>
+                <button type="button" class="btn btn-primary" onclick="scrollToSection('product-showcases')">Explore All Labs →</button>
+                <button type="button" class="btn btn-secondary" onclick="scrollToSection('find-your-tool')">Find Your Tool →</button>
+                <button type="button" class="btn btn-secondary" onclick="navigateTo('apps')">Directory &amp; Source Repos</button>
+              </div>
+            </div>
+
+            <!-- Right Column: LIVE INTERACTIVE STATISTICAL INSTRUMENT -->
+            <div class="instrument-frame" aria-label="Interactive Statistical Instrument Sandbox">
+              <div class="instrument-topbar">
+                <div class="inst-window-meta">
+                  <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="inst-mode-badge" id="inst-active-badge">LIVE INSTRUMENT · 60FPS SVG ENGINE</span>
+                </div>
+                <div class="workbench-tabs" id="hero-workbench-tabs" role="tablist" aria-label="Select Live Instrument Mode"></div>
+              </div>
+
+              <!-- Dynamic Mode Controls + Live vs Screenshot Toggle -->
+              <div class="inst-control-bar">
+                <div class="inst-preset-group" id="inst-Dynamic-controls"></div>
+                <div class="inst-view-toggle" role="group" aria-label="Workbench Display Mode">
+                  <button type="button" class="inst-view-btn active" id="btn-mode-live" onclick="setWorkbenchDisplay('live')">Live Sandbox</button>
+                  <button type="button" class="inst-view-btn" id="btn-mode-shot" onclick="setWorkbenchDisplay('shot')">App UI Capture</button>
+                </div>
+              </div>
+
+              <!-- Live Interactive Canvas Stage -->
+              <div class="inst-stage-body" id="inst-live-stage">
+                <div class="inst-canvas-grid" id="inst-canvas-container">
+                  <!-- Populated dynamically by the 5 bespoke interactive micro-engines -->
+                </div>
+                <div class="telemetry-strip" id="inst-telemetry-strip">
+                  <!-- Live tabular-nums readout cells -->
+                </div>
+              </div>
+
+              <!-- Optional Full UI Capture View (Hidden by default so Hero isn't a static image) -->
+              <div class="hero-screenshot-pane" id="inst-shot-stage">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.45rem;font-family:var(--font-mono);font-size:0.7rem;color:var(--inst-muted);">
+                  <span id="hero-shot-caption">PRODUCTION INTERFACE CAPTURE · 100% UNCROPPED VIEW</span>
+                  <div style="display:flex;gap:0.4rem;">
+                    <button type="button" class="inst-view-btn" onclick="setWorkbenchDisplay('live')">← Return to Live Sandbox</button>
+                    <button type="button" class="inst-view-btn active" onclick="openLightbox(APP_REGISTRY[activeHeroIndex].id)">⤢ Expand High-DPI Lightbox</button>
+                  </div>
+                </div>
+                <img id="hero-preview-img" src="" alt="Application interface capture" onclick="openLightbox(APP_REGISTRY[activeHeroIndex].id)" style="cursor:zoom-in;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- DESIGNEER-INSPIRED QUICK-FINDS DISCOVERY BAR (ABOVE THE FOLD MAGNET) -->
+          <div class="hero-finds-strip" aria-label="Interactive Craft & Micro-Playgrounds">
+            <div class="hero-finds-label">
+              <span style="color:var(--accent-emerald);">✦ CURATED INTERFACE CRAFT</span>
+              <span>· Interactive Micro-Experiments &amp; Playable Instruments</span>
+            </div>
+            <div class="hero-finds-pills">
+              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-abacus')">🧮 Hover Quantile Abacus</button>
+              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-spring')">〰️ Spring LOESS Bandwidth</button>
+              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-shredder')">⚡ Sentinel -999 Shredder</button>
+              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-palette')">🎨 Okabe-Ito Vision Sim</button>
+              <button type="button" class="quick-find-pill" onclick="scrollToSection('designeer-catalogue')">Browse All 9 Finds ↓</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SECTION 00 · DATASENSE COMPASS — INTELLIGENT ENTRY & QUALITY GATE
+           =================================================================== -->
+      <section class="compass-home-section" id="compass-home-entry" aria-labelledby="compass-home-heading">
+        <div class="container">
+          <div class="section-header-row" style="margin-bottom:1.5rem;">
+            <div>
+              <span class="section-eyebrow" style="color:var(--accent-emerald);">00 · DataSense Compass · Intelligent Data Discovery, Quality Gating &amp; Routing</span>
+              <h2 class="section-heading" id="compass-home-heading">Not sure where to begin? Start with your data.</h2>
+            </div>
+            <p class="section-sublead">
+              Upload a dataset, choose a variable that matters to you, discover possible relationships, and find the right tool for your next question.
+            </p>
+          </div>
+
+                    <div class="compass-3pillars-strip" id="compass-home-pillars" aria-label="How DataSense Compass Works">
+            <div class="compass-pillar-card">
+              <div class="compass-pillar-kicker">01 · Data Readiness</div>
+              <h3 class="compass-pillar-title">Is this dataset ready for analysis?</h3>
+              <p class="compass-pillar-desc">Detects missing values, coded sentinels (-999), duplicate keys, category casing splits, and extreme observations before you run a model.</p>
+            </div>
+            <div class="compass-pillar-card">
+              <div class="compass-pillar-kicker">02 · Primary Variable Focus</div>
+              <h3 class="compass-pillar-title">What variable do you want to understand?</h3>
+              <p class="compass-pillar-desc">Pick any numeric outcome, category group, binary flag, or date index to center the entire exploratory analysis around your question.</p>
+            </div>
+            <div class="compass-pillar-card">
+              <div class="compass-pillar-kicker">03 · Relationships &amp; Tool Routing</div>
+              <h3 class="compass-pillar-title">Which variables relate, and what tool is next?</h3>
+              <p class="compass-pillar-desc">Ranks predictors separately by statistical family (correlations, group differences, contingency, time series) and recommends the exact lab to open next.</p>
+            </div>
+          </div>
+          <div class="compass-home-shell">
+            <div class="compass-home-topbar">
+              <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                <span class="mono-num" style="font-size:0.74rem;letter-spacing:0.06em;color:#34D399;">[ DATASENSE COMPASS ENGINE v1.0 · CLIENT-SIDE STATISTICAL PROFILER &amp; ROUTER ]</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+                <span class="mono-num" style="font-size:0.72rem;color:#9CA3AF;">100% Browser-Local · Zero Server Uploads</span>
+                <button type="button" class="btn btn-emerald btn-sm" onclick="navigateTo('compass')">Open Full /compass/ Workspace →</button>
+              </div>
+            </div>
+
+            <div class="compass-home-grid">
+              <!-- Left Column: Sample Dataset Switcher, Primary Variable Picker, File Dropzone -->
+              <div class="compass-home-left">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.55rem;flex-wrap:wrap;gap:0.4rem;">
+                    <span class="mono-num" style="font-size:0.72rem;text-transform:uppercase;color:var(--ink-muted);font-weight:600;">Step 1 · Try a Curated Sample Dataset (6 Scenarios)</span>
+                    <span class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald);" id="compass-home-ds-meta">30 rows × 10 cols</span>
+                  </div>
+                  <div class="compass-sample-pills" id="compass-home-sample-pills" role="tablist" aria-label="Sample Datasets"></div>
+                  <p id="compass-home-ds-desc" style="font-size:0.82rem;color:var(--ink-secondary);margin-top:0.55rem;line-height:1.5;"></p>
+                </div>
+
+                <!-- Primary Variable Selector -->
+                <div style="background:var(--bg-canvas-elevated);border:1px solid var(--border-hairline);border-radius:var(--radius-md);padding:0.95rem 1.1rem;">
+                  <label for="compass-home-primary-select" style="display:block;font-family:var(--font-mono);font-size:0.72rem;text-transform:uppercase;color:var(--ink-muted);font-weight:600;margin-bottom:0.4rem;">
+                    Step 2 · What variable do you want to understand? (Primary Variable)
+                  </label>
+                  <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;">
+                    <select id="compass-home-primary-select" onchange="onCompassPrimaryChange(this.value, true)" style="flex:1;min-width:180px;padding:0.5rem 0.7rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--ink-primary);font-family:var(--font-mono);font-size:0.84rem;font-weight:600;"></select>
+                    <span class="compass-type-badge" id="compass-home-primary-type">Continuous Numeric</span>
+                  </div>
+                  <div id="compass-home-primary-stats" class="mono-num" style="font-size:0.76rem;color:var(--ink-secondary);margin-top:0.55rem;line-height:1.5;"></div>
+                </div>
+
+                <!-- Upload Own CSV/TSV/JSON Dropzone -->
+                <div class="compass-dropzone" id="compass-home-dropzone" onclick="document.getElementById('compass-home-file-input').click()" ondragover="handleCompassDragOver(event, this)" ondragleave="handleCompassDragLeave(event, this)" ondrop="handleCompassFileDrop(event, true)">
+                  <input type="file" id="compass-home-file-input" accept=".csv,.tsv,.txt,.json" style="display:none;" onchange="handleCompassFileSelect(event, true)" />
+                  <div style="font-family:var(--font-mono);font-size:0.76rem;font-weight:600;color:var(--ink-primary);">
+                    ↑ Upload Your Dataset (.CSV, .TSV, .JSON) or Drag &amp; Drop Here
+                  </div>
+                  <div style="font-size:0.76rem;color:var(--ink-secondary);margin-top:0.25rem;">
+                    Parsed locally in your browser via RFC-4180 engine &amp; opened immediately in <strong>/compass/</strong>. Private datasets never leave your device.
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;">
+                  <button type="button" class="btn btn-primary" onclick="navigateTo('compass')">Explore Full Dataset in Compass →</button>
+                  <button type="button" class="btn btn-secondary" onclick="document.getElementById('compass-home-file-input').click()">Upload Dataset</button>
+                  <button type="button" class="btn btn-secondary" onclick="openCompassRoundTripModal()">Clean in DataMend Lab ⇄</button>
+                </div>
+              </div>
+
+              <!-- Right Column: Live Three-Question Readout (Readiness, Top Relationships, Recommended Next Lab) -->
+              <div class="compass-home-right">
+                <!-- Q1: Readiness Gate -->
+                <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-md);padding:0.95rem 1.1rem;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.45rem;">
+                    <span class="mono-num" style="font-size:0.7rem;text-transform:uppercase;color:var(--ink-muted);">1 · Analysis Readiness Gate</span>
+                    <div id="compass-home-readiness-badge"></div>
+                  </div>
+                  <p id="compass-home-readiness-text" style="font-size:0.83rem;color:var(--ink-secondary);line-height:1.45;"></p>
+                  <div id="compass-home-readiness-actions" style="margin-top:0.55rem;display:flex;gap:0.5rem;flex-wrap:wrap;"></div>
+                </div>
+
+                <!-- Q2: Ranked Relationships with Primary Variable -->
+                <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-md);padding:0.95rem 1.1rem;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.55rem;">
+                    <span class="mono-num" style="font-size:0.7rem;text-transform:uppercase;color:var(--ink-muted);">2 · Top Relationships with Primary Variable (By Statistical Family)</span>
+                    <button type="button" class="find-view-pill" onclick="navigateTo('compass');setCompassCenterMode('matrix');">View ggpairs Matrix →</button>
+                  </div>
+                  <div id="compass-home-relationships-preview"></div>
+                </div>
+
+                <!-- Q3: Recommended Next DataSense Application -->
+                <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-md);padding:0.95rem 1.1rem;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.45rem;">
+                    <span class="mono-num" style="font-size:0.7rem;text-transform:uppercase;color:var(--ink-muted);">3 · Ordered Ecosystem Routing</span>
+                    <span class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald);" id="compass-home-rec-count">Multi-step workflow</span>
+                  </div>
+                  <div id="compass-home-rec-preview"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.5 DESIGNEER-INSPIRED CURATED FINDS, MICRO-PLAYGROUNDS & TOOLKIT CATALOGUE -->
+      <section class="designeer-section" id="designeer-catalogue" aria-labelledby="designeer-heading">
+        <div class="container">
+          <div class="designeer-top-bar">
+            <div>
+              <span class="section-eyebrow" style="color:var(--accent-emerald-bright);">00 · Curated Discovery Feed · Inspired by Designeer Craft</span>
+              <h2 class="section-heading" id="designeer-heading" style="color:#FFFFFF;">Interactive Finds, Micro-Instruments &amp; Copyable Recipes</h2>
+            </div>
+            <p class="section-sublead" style="color:#9CA3AF;max-width:54ch;">
+              Every card below is a live interactive micro-laboratory. Hover or click inside any card to manipulate statistical mechanics in real time, switch between <strong style="color:#fff;">3 views</strong> (Live Play, UI Capture, Code Recipe), or save instruments to your custom folder.
+            </p>
+          </div>
+
+          <!-- Multi-Faceted Filter & Colour Swatch Deck (Designeer.xyz Pattern) -->
+          <div class="designeer-filter-deck" role="region" aria-label="Filter Interactive Finds and Instruments">
+            <div class="designeer-filter-row">
+              <div class="ds-cat-pills" id="ds-category-pills" role="tablist" aria-label="Catalogue Category Filter">
+                <button type="button" class="ds-cat-btn active" onclick="setDesigneerCategory('all')">All Finds (9)</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('micro')">✦ Micro-Playgrounds (4)</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('labs')">Flagship Labs (5)</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Prepare')">01 Prepare</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Visualize')">02 Visualize</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Investigate')">03 Investigate</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Infer')">04 Infer</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Forecast')">05 Forecast</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('saved')">♥ Saved Folder</button>
+              </div>
+
+              <!-- Designeer 'All colours' Swatch Filter + Density Toggle -->
+              <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+                <div class="ds-color-swatches" role="group" aria-label="Filter by instrument accent colour">
+                  <button type="button" class="ds-swatch-btn ds-swatch-all active" data-col="all" onclick="setDesigneerColor('all')">All colours</button>
+                  <button type="button" class="ds-swatch-btn" data-col="#0D9488" style="background:#0D9488;" title="Teal · Prepare / Hygiene" aria-label="Filter Teal Prepare" onclick="setDesigneerColor('#0D9488')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#4F46E5" style="background:#4F46E5;" title="Indigo · Visualize / Perception" aria-label="Filter Indigo Visualize" onclick="setDesigneerColor('#4F46E5')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#D9381E" style="background:#D9381E;" title="Vermilion · Investigate / Outliers" aria-label="Filter Vermilion Investigate" onclick="setDesigneerColor('#D9381E')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#0F6E56" style="background:#34D399;" title="Emerald · Infer / Bootstrap" aria-label="Filter Emerald Infer" onclick="setDesigneerColor('#0F6E56')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#2563EB" style="background:#3B82F6;" title="Cobalt · Forecast / Temporal" aria-label="Filter Cobalt Forecast" onclick="setDesigneerColor('#2563EB')"></button>
+                </div>
+
+                <div class="find-view-switcher" role="group" aria-label="Catalogue Grid Density">
+                  <button type="button" class="find-view-pill active" id="ds-density-grid" onclick="setDesigneerDensity('grid')">3-Col Grid</button>
+                  <button type="button" class="find-view-pill" id="ds-density-studio" onclick="setDesigneerDensity('studio')">2-Col Studio</button>
+                </div>
+
+                <button type="button" class="ds-cat-btn" onclick="openFavouritesDrawer()">📁 Folders (<span id="ds-folder-count">2</span>)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Playable 9-Card Designeer Grid -->
+          <div class="designeer-grid" id="designeer-cards-grid"></div>
+        </div>
+      </section>
+
+      <!-- 2. UNIFIED PIPELINE & MATHEMATICAL SIGNATURE MATRIX (NO REPEATED SCREENSHOTS) -->
+      <section class="section-block" id="analytical-journey" aria-labelledby="journey-heading">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">01 · Connected Analytical Lifecycle</span>
+              <h2 class="section-heading" id="journey-heading">One continuous data handoff across five laboratories</h2>
+            </div>
+            <p class="section-sublead">
+              Each DataSense Studio laboratory handles one stage of the analytical lifecycle and exports validated UTF-8 CSV, SVG, or JSON recipes to the next stage.
+            </p>
+          </div>
+
+          <!-- Interactive 5-Stage Pipeline Handoff Blueprint + User-Flow State Inspector -->
+          <div class="pipeline-blueprint">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+              <span class="foreman-sheet-tag">[ SHEET 02 · DETERMINISTIC USER-FLOW &amp; STATE-TRANSITION ARCHITECTURE ]</span>
+              <div class="find-view-switcher" role="group" aria-label="User Flow Specification View">
+                <button type="button" class="find-view-pill active" id="uf-tab-states" onclick="setUserFlowView('states')">1 · State Machine &amp; Branches</button>
+                <button type="button" class="find-view-pill" id="uf-tab-inventory" onclick="setUserFlowView('inventory')">2 · Screen State Inventory</button>
+                <button type="button" class="find-view-pill" id="uf-tab-yaml" onclick="setUserFlowView('yaml')">3 · FlowSpec YAML</button>
+              </div>
+            </div>
+            <div class="pipeline-stepper-bar" id="journey-stepper" role="tablist" aria-label="Analytical Handoff Stages"></div>
+            <div class="journey-detail-box" id="journey-detail-panel"></div>
+            <details class="technical-dossier-expander"><summary><span>Technical Specification · Deterministic User-Flow State Machine &amp; YAML Contract</span><span class="mono-num">Expand ▾</span></summary><div class="technical-dossier-body"><div class="flowspec-deck" id="userflow-spec-panel" aria-live="polite"></div></div></details>
+          </div>
+
+          <!-- Asymmetric 5-Instrument Matrix with Custom SVG Mathematical Signatures -->
+          <div id="labs-bento" style="margin-top:2.5rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.15rem;flex-wrap:wrap;gap:0.75rem;">
+              <h3 id="bento-heading" style="font-family:var(--font-display);font-size:1.75rem;font-weight:400;">Architectural Index of the Five Instruments</h3>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo('apps')">Open Full Directory &amp; Filter</button>
+            </div>
+            <div class="bento-grid" id="home-bento-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. DEEP-DIVE PRODUCT SHOWCASES (HIGH-DPI WORKSPACES + INTERACTIVE HOTSPOTS) -->
+      <section class="section-block" id="product-showcases" aria-labelledby="showcase-heading">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">02 · Production Workspace Inspection</span>
+              <h2 class="section-heading" id="showcase-heading">Inspect the five laboratories in detail</h2>
+            </div>
+            <p class="section-sublead">
+              Click any numbered diagnostic callout below a workspace capture to inspect how the live interface exposes statistical diagnostics, or click an image to open the full-resolution lightbox.
+            </p>
+          </div>
+
+          <div class="showcase-Deck" id="home-showcases-container"></div>
+        </div>
+      </section>
+
+      <!-- 4. INSTANT DIAGNOSTIC ROUTER ("FIND YOUR TOOL") -->
+      <section class="section-block" id="find-your-tool" aria-labelledby="finder-heading">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">03 · Interactive Task Router</span>
+              <h2 class="section-heading" id="finder-heading">What analytical problem are you solving right now?</h2>
+            </div>
+            <p class="section-sublead">
+              Select your dataset bottleneck to get a surgical tool recommendation, mathematical guardrail, and two-stage handoff sequence.
+            </p>
+          </div>
+
+          <div class="router-shell">
+            <div class="task-pill-list" id="home-finder-tasks" role="tablist" aria-label="Analytical Task Selector"></div>
+            <div class="router-prescription-box" id="home-finder-result"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. ATELIER CRAFT, LEARNING PATHWAYS & AUTHORITATIVE LINK LEDGER -->
+      <section class="section-block" id="trust-methods" aria-labelledby="trust-heading" style="border-bottom:none;">
+        <div class="container">
+          <div class="atelier-split">
+            <div>
+              <span class="section-eyebrow">04 · Methodological Integrity &amp; Design Standards</span>
+              <h2 class="section-heading" id="trust-heading">Engineered for perceptual honesty and client-side privacy</h2>
+              <p class="section-sublead" style="margin-top:0.75rem;">
+                Every laboratory executes 100% locally in your browser’s JavaScript/WebAssembly runtime. No datasets are uploaded to external servers, and every visual encoding follows strict statistical and graphical guardrails.
+              </p>
+
+              <div class="guardrail-cards">
+                <div class="guardrail-card">
+                  <div class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald);font-weight:600;">GUARDRAIL 01 · MOMENT FIDELITY</div>
+                  <strong style="display:block;margin-top:2px;font-size:0.92rem;">Exact-Moment &amp; Leverage Diagnostics</strong>
+                  <p style="font-size:0.8rem;color:var(--ink-secondary);margin-top:4px;">Never report Pearson <em>r</em> or OLS slopes without exposing Cook’s <em>D<sub>i</sub></em>, leverage <em>h<sub>ii</sub></em>, and residual structure.</p>
+                </div>
+                <div class="guardrail-card">
+                  <div class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald);font-weight:600;">GUARDRAIL 02 · GRAPHICAL UNITY</div>
+                  <strong style="display:block;margin-top:2px;font-size:0.92rem;">Zero Truncated Axes or Rainbow Maps</strong>
+                  <p style="font-size:0.8rem;color:var(--ink-secondary);margin-top:4px;">Enforces zero-baseline bars, raincloud distributions over bar-of-means, and Okabe-Ito colorblind safety.</p>
+                </div>
+                <div class="guardrail-card">
+                  <div class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald);font-weight:600;">GUARDRAIL 03 · NONPARAMETRIC RIGOR</div>
+                  <strong style="display:block;margin-top:2px;font-size:0.92rem;">Computational Inference First</strong>
+                  <p style="font-size:0.8rem;color:var(--ink-secondary);margin-top:4px;">Visualizes 10,000-replicate bootstrap and permutation distributions rather than black-box <em>p</em>-values.</p>
+                </div>
+                <div class="guardrail-card">
+                  <div class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald);font-weight:600;">GUARDRAIL 04 · TEMPORAL HONESTY</div>
+                  <strong style="display:block;margin-top:2px;font-size:0.92rem;">Out-of-Sample Rolling Origin Evaluation</strong>
+                  <p style="font-size:0.8rem;color:var(--ink-secondary);margin-top:4px;">Benchmarks every forecast against Seasonal Naïve (<span class="mono-num">MASE &lt; 1.0</span>) with calibrated 80%/95% fan intervals.</p>
+                </div>
+              </div>
+
+              <div style="margin-top:1.25rem;display:flex;gap:0.65rem;flex-wrap:wrap;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo('methods')">Read Full Standards &amp; Guardrails →</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo('workflows')">Compare Workflows →</button>
+              </div>
+            </div>
+
+            <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);padding:1rem;box-shadow:var(--shadow-md);">
+              <img src="../assets/screenshots/atelier-prism-caliper.webp" alt="Optical glass prism refracting light across an architectural brass vernier caliper and archival statistical ledger sheet" style="width:100%;height:auto;border-radius:var(--radius-md);display:block;" loading="lazy" />
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-top:0.75rem;font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-muted);">
+                <span>ATELIER INSTRUMENT STANDARD · REV 2.4</span>
+                <span>100% CLIENT-SIDE RUNTIME</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7-Framework Design System, Anti-Slop & Apple HIG Verification Ledger -->
+          <details class="technical-dossier-expander" style="margin-bottom:2.25rem;"><summary><span>Engineering &amp; Design Standards Dossier · Typography, Accessibility &amp; Verification Metrics</span><span class="mono-num">Expand ▾</span></summary><div class="technical-dossier-body"><div class="craft-audit-ledger" id="craft-verification-ledger" style="margin-bottom:0;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:0.75rem;padding-bottom:0.85rem;border-bottom:1px solid var(--border-hairline);">
+              <div>
+                <span class="foreman-sheet-tag">[ SHEET 04 · LOCKED DESIGN SYSTEM, ANTI-SLOP &amp; HIG VERIFICATION ]</span>
+                <h3 style="font-family:var(--font-display);font-size:1.75rem;font-weight:400;margin-top:0.2rem;">Audited against six engineering and interface standards</h3>
+              </div>
+              <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="copyDesignSystemBrief()">⎘ Copy DESIGN.md &amp; FlowSpec Brief</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo('methods')">Inspect Full Audit →</button>
+              </div>
+            </div>
+            <div class="craft-audit-grid">
+              <div class="craft-audit-card">
+                <div>
+                  <div class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald);font-weight:600;">01 · PROSE &amp; CODE DESLOP</div>
+                  <strong style="font-size:0.9rem;display:block;margin-top:2px;">Direct Technical Voice &amp; Zero Debt</strong>
+                  <p style="font-size:0.78rem;color:var(--ink-secondary);margin-top:4px;line-height:1.48;">Strips formulaic contrasts, em-dashes, and throat-clearing openers from prose while enforcing zero debug logs, zero generic TODOs, and explicit error recovery in code.</p>
+                </div>
+                <div class="mono-num" style="font-size:0.7rem;color:var(--ink-muted);padding-top:0.4rem;border-top:1px solid var(--border-hairline);">Prose Rubric: <strong style="color:var(--accent-emerald);">49/50</strong> · Code Slop: <strong style="color:var(--accent-emerald);">0/100</strong></div>
+              </div>
+              <div class="craft-audit-card">
+                <div>
+                  <div class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald);font-weight:600;">02 · IMPECCABLE × AI-WEB-DESIGN</div>
+                  <strong style="font-size:0.9rem;display:block;margin-top:2px;">Earned Visual Premise &amp; Typography</strong>
+                  <p style="font-size:0.78rem;color:var(--ink-secondary);margin-top:4px;line-height:1.48;">Pairs Instrument Serif, Plus Jakarta Sans, and tabular JetBrains Mono on warm archival paper (#F6F4EE) and obsidian instrument panels (#0D1014) with zero neon pulse dots or side-tab borders.</p>
+                </div>
+                <div class="mono-num" style="font-size:0.7rem;color:var(--ink-muted);padding-top:0.4rem;border-top:1px solid var(--border-hairline);">Detector Checks: <strong style="color:var(--accent-emerald);">62/62 Passed (0 Tells)</strong></div>
+              </div>
+              <div class="craft-audit-card">
+                <div>
+                  <div class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald);font-weight:600;">03 · FOREMAN × APPLE HIG × FLOWSPEC</div>
+                  <strong style="font-size:0.9rem;display:block;margin-top:2px;">Measured Contrast &amp; State Contracts</strong>
+                  <p style="font-size:0.78rem;color:var(--ink-secondary);margin-top:4px;line-height:1.48;">Locks primary contrast at 16.4:1 (light) and 17.2:1 (dark), concentric radii (R_out = R_in + pad), damped spring motion, and immutable YAML handoff contracts across all five labs.</p>
+                </div>
+                <div class="mono-num" style="font-size:0.7rem;color:var(--ink-muted);padding-top:0.4rem;border-top:1px solid var(--border-hairline);">WCAG AAA: <strong style="color:var(--accent-emerald);">16.4:1</strong> · Flows: <strong style="color:var(--accent-emerald);">5/5 Locked</strong></div>
+              </div>
+            </div>
+          </div>
+
+          </div></details>
+
+          <!-- Compact Curated Learning Pathways Strip -->
+          <div id="learning-pathways" style="margin-bottom:2.75rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
+              <div>
+                <span class="section-eyebrow">05 · Conceptual Curriculum</span>
+                <h3 id="learning-heading" style="font-family:var(--font-display);font-size:1.85rem;font-weight:400;">Five interactive statistical field guides</h3>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="navigateTo('learn')">Open Complete Learning Atlas →</button>
+            </div>
+            <div class="learning-strip-grid" id="home-learning-grid"></div>
+          </div>
+
+          <!-- Compact Audience Strip (Preserves #audiences and #audiences-heading without fluff) -->
+          <div id="audiences" style="margin-bottom:2.75rem;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+              <div>
+                <span class="section-eyebrow" style="margin-bottom:0.2rem;">Built For Analytical Practitioners</span>
+                <h3 id="audiences-heading" style="font-family:var(--font-display);font-size:1.55rem;font-weight:400;">Adopted by students, educators, data journalists, and research analysts</h3>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.74rem;">
+                <span style="padding:0.3rem 0.65rem;background:var(--bg-elevated);border-radius:999px;">University Labs &amp; Syllabi</span>
+                <span style="padding:0.3rem 0.65rem;background:var(--bg-elevated);border-radius:999px;">Reproducible Data Journalism</span>
+                <span style="padding:0.3rem 0.65rem;background:var(--bg-elevated);border-radius:999px;">Clinical &amp; Policy QA</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Authoritative 10-URL Verification Ledger & Direct Launchpad -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
+              <div>
+                <span class="section-eyebrow">06 · Authoritative Endpoint Registry</span>
+                <h3 id="closing-cta-heading" style="font-family:var(--font-display);font-size:1.85rem;font-weight:400;">Verified Live Applications &amp; Source Repositories</h3>
+              </div>
+              <span class="mono-num" style="font-size:0.75rem;color:var(--accent-emerald);font-weight:600;">● All 10 Production Endpoints Verified</span>
+            </div>
+
+            <div class="registry-table-wrap">
+              <table class="registry-table">
+                <thead>
+                  <tr>
+                    <th>Stage</th>
+                    <th>Laboratory</th>
+                    <th>Primary Analytical Scope</th>
+                    <th>Live Web Application</th>
+                    <th>GitHub Repository</th>
+                  </tr>
+                </thead>
+                <tbody id="trust-registry-tbody"></tbody>
+              </table>
+            </div>
+            <div id="closing-launchpad-list" style="display:none;"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: APPLICATIONS DIRECTORY
+         ================================================================= -->
+    <div class="view-section" id="view-apps">
+      <section class="section-block">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">Ecosystem Directory</span>
+              <h1 class="section-heading">All Five Statistical Laboratories</h1>
+            </div>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+              <input type="search" id="dir-search-input" aria-label="Filter laboratories by statistical method or stage" placeholder="Filter by method (e.g., bootstrap, STL, outlier)…" oninput="renderDirectory()" style="padding:0.5rem 0.85rem;border:1px solid var(--border-hairline);border-radius:var(--radius-sm);background:var(--bg-surface);min-width:260px;font-size:0.85rem;" />
+              <div id="dir-category-pills" style="display:flex;gap:0.35rem;flex-wrap:wrap;">
+                <button type="button" class="stage-pill active" onclick="setDirCategory('all')">All (5)</button>
+              </div>
+            </div>
+          </div>
+          <div id="directory-results-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.25rem;"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: PRODUCT DETAIL DOSSIER
+         ================================================================= -->
+    <div class="view-section" id="view-product-detail">
+      <section class="section-block">
+        <div class="container" id="product-detail-container"></div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: CONNECTED WORKFLOWS
+         ================================================================= -->
+    <div class="view-section" id="view-workflows">
+      <section class="section-block">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">Cross-Laboratory Pipelines</span>
+              <h1 class="section-heading">Multi-Stage Analytical Workflows</h1>
+            </div>
+            <p class="section-sublead"> Concrete, step-by-step protocols showing how datasets move across DataSense Studio laboratories via standardized CSV and JSON artifacts.</p>
+          </div>
+          <div id="workflows-page-list" style="display:flex;flex-direction:column;gap:1.5rem;"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: FIND YOUR TOOL (DEDICATED PAGE)
+         ================================================================= -->
+    <div class="view-section" id="view-finder">
+      <section class="section-block">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">Diagnostic Recommender</span>
+              <h1 class="section-heading">Find Your Statistical Instrument</h1>
+            </div>
+            <p class="section-sublead">Match your analytical question or data quality bottleneck to the exact laboratory and companion handoff.</p>
+          </div>
+          <div class="router-shell">
+            <div class="task-pill-list" id="page-finder-tasks" role="tablist" aria-label="Analytical Task Selector"></div>
+            <div class="router-prescription-box" id="page-finder-result"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: LEARNING PATHWAYS
+         ================================================================= -->
+    <div class="view-section" id="view-learn">
+      <section class="section-block">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">Educational Curriculum</span>
+              <h1 class="section-heading">Unified Statistical Learning Pathways</h1>
+            </div>
+            <p class="section-sublead">Five structured modules pairing foundational statistical theory with hands-on browser experimentation.</p>
+          </div>
+          <div id="learn-page-content" style="display:flex;flex-direction:column;gap:1.5rem;"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: STATISTICAL & VISUAL STANDARDS
+         ================================================================= -->
+    <div class="view-section" id="view-methods">
+      <section class="section-block">
+        <div class="container" id="methods-page-content"></div>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         VIEW: ABOUT DATASENSE STUDIO
+         ================================================================= -->
+    <div class="view-section" id="view-about">
+      <section class="section-block">
+        <div class="container" id="about-page-content"></div>
+      </section>
+    </div>
+
+
+    <!-- =================================================================
+         VIEW: DATASENSE COMPASS (/compass/ FULL 3-COLUMN WORKSPACE)
+         ================================================================= -->
+    <div class="view-section" id="view-compass">
+      <div class="compass-workspace-header">
+        <div class="container">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;">
+            <div>
+              <div style="display:flex;align-items:center;gap:0.55rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+                <span class="mono-num" style="font-size:0.72rem;color:#34D399;letter-spacing:0.06em;">[ ROUTE /compass/ · INTELLIGENT DATA DISCOVERY, QUALITY GATING &amp; CROSS-APP ROUTING ]</span>
+                <span class="kbd-pill" id="compass-ws-format-badge" style="background:#151921;color:#E5E7EB;border-color:#2D3545;">CSV</span>
+              </div>
+              <h1 style="font-family:var(--font-display);font-size:clamp(1.75rem, 2.6vw, 2.35rem);font-weight:400;color:#FFFFFF;line-height:1.12;" id="compass-ws-title">
+                DataSense Compass
+              </h1>
+              <p style="font-size:0.86rem;color:#9CA3AF;max-width:68ch;margin-top:0.3rem;" id="compass-ws-subtitle">
+                Select any primary variable to evaluate analysis readiness, inspect parametric and non-parametric relationships across variable families, and route cleanly across the five DataSense Studio laboratories.
+              </p>
+            </div>
+
+            <!-- Export & Upload Bar -->
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
+              <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
+                <input type="file" id="compass-ws-file-input" accept=".csv,.tsv,.txt,.json" style="display:none;" onchange="handleCompassFileSelect(event, false)" />
+                <button type="button" class="btn btn-emerald btn-sm" onclick="document.getElementById('compass-ws-file-input').click()">↑ Upload CSV / TSV / JSON</button>
+                <button type="button" class="btn btn-dark-outline btn-sm" onclick="openCompassPasteModal()">✎ Paste Raw Data</button>
+                <button type="button" class="btn btn-dark-outline btn-sm" onclick="openCompassRoundTripModal()">⇄ DataMend Round-Trip Workbench</button>
+              </div>
+              <div style="display:flex;gap:0.35rem;flex-wrap:wrap;" role="group" aria-label="Reproducible Exports">
+                <button type="button" class="find-view-pill" onclick="exportCompassArtifact('profile_json')" title="Download Dataset Profile & Readiness Report JSON">↓ Profile JSON</button>
+                <button type="button" class="find-view-pill" onclick="exportCompassArtifact('relationships_csv')" title="Download Ranked Relationships Summary CSV">↓ Relationships CSV</button>
+                <button type="button" class="find-view-pill" onclick="exportCompassArtifact('chart_svg')" title="Download Current Pair Visualization SVG">↓ Pair Chart SVG</button>
+                <button type="button" class="find-view-pill" onclick="exportCompassArtifact('datasense_json')" title="Download DataSense Exchange Format JSON Envelope">↓ DataSense JSON</button>
+                <button type="button" class="find-view-pill" onclick="exportCompassArtifact('dataset_csv')" title="Download Active Dataset CSV">↓ Dataset CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sample Datasets Bar inside /compass/ -->
+          <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid var(--inst-border);display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:0.45rem;flex-wrap:wrap;">
+              <span class="mono-num" style="font-size:0.7rem;color:#9CA3AF;text-transform:uppercase;">Built-in Benchmark Datasets:</span>
+              <div class="compass-sample-pills" id="compass-ws-sample-pills"></div>
+            </div>
+            <div class="mono-num" style="font-size:0.73rem;color:#D1D5DB;" id="compass-ws-dimensions"></div>
+          </div>
+
+                    <!-- 5-Step Guided Progression Bar -->
+          <div class="compass-step-bar" id="compass-step-progression" role="navigation" aria-label="Compass 5-Step Workflow">
+            <button type="button" class="compass-step-btn active" id="compass-step-btn-1" onclick="jumpCompassStep(1)">
+              <span class="compass-step-num">Step 01</span>
+              <span class="compass-step-label">Choose data</span>
+            </button>
+            <button type="button" class="compass-step-btn" id="compass-step-btn-2" onclick="jumpCompassStep(2)">
+              <span class="compass-step-num">Step 02</span>
+              <span class="compass-step-label">Choose a variable</span>
+            </button>
+            <button type="button" class="compass-step-btn" id="compass-step-btn-3" onclick="jumpCompassStep(3)">
+              <span class="compass-step-num">Step 03</span>
+              <span class="compass-step-label">Review readiness</span>
+            </button>
+            <button type="button" class="compass-step-btn" id="compass-step-btn-4" onclick="jumpCompassStep(4)">
+              <span class="compass-step-num">Step 04</span>
+              <span class="compass-step-label">Explore relationships</span>
+            </button>
+            <button type="button" class="compass-step-btn" id="compass-step-btn-5" onclick="jumpCompassStep(5)">
+              <span class="compass-step-num">Step 05</span>
+              <span class="compass-step-label">Continue to the right tool</span>
+            </button>
+          </div>
+
+          <!-- Round-Trip Lineage Audit Banner (Displayed automatically when dataset was cleaned in DataMend) -->
+          <div id="compass-lineage-banner" style="display:none;margin-top:0.85rem;background:rgba(16, 185, 129, 0.14);border:1px solid rgba(52, 211, 153, 0.45);border-radius:var(--radius-md);padding:0.75rem 1rem;color:#ECFDF5;"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="compass-3col-grid">
+
+          <!-- ===============================================================
+               LEFT COLUMN: PRIMARY TARGET CONTROL, SUBSET FILTER & VARIABLE BROWSER
+               =============================================================== -->
+          <aside class="compass-col-left" aria-label="Dataset and Variable Browser">
+            <div class="compass-panel" style="margin-bottom:1rem;">
+              <div class="compass-panel-header">
+                <span class="compass-panel-title">Primary Target Variable</span>
+                <span class="compass-type-badge" id="compass-ws-primary-role">Target</span>
+              </div>
+              <div class="compass-panel-body" style="display:flex;flex-direction:column;gap:0.75rem;">
+                <div>
+                  <label for="compass-ws-primary-select" style="display:block;font-size:0.78rem;font-weight:600;color:var(--ink-primary);margin-bottom:0.35rem;">
+                    What variable do you want to understand?
+                  </label>
+                  <select id="compass-ws-primary-select" onchange="onCompassPrimaryChange(this.value, false)" style="width:100%;padding:0.52rem 0.65rem;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--ink-primary);font-family:var(--font-mono);font-size:0.83rem;font-weight:600;"></select>
+                </div>
+
+                <!-- Conditional Temporal Outcome Selector when Primary is Date/DateTime -->
+                <div id="compass-temporal-outcome-box" style="display:none;padding:0.65rem;background:var(--accent-cobalt-tint);border:1px solid rgba(37,99,235,0.3);border-radius:var(--radius-sm);">
+                  <label for="compass-temporal-outcome-select" style="display:block;font-family:var(--font-mono);font-size:0.7rem;color:var(--accent-cobalt);font-weight:600;margin-bottom:0.3rem;">
+                    Time-Series Outcome Measure (Optional)
+                  </label>
+                  <select id="compass-temporal-outcome-select" onchange="onCompassTemporalOutcomeChange(this.value)" style="width:100%;padding:0.4rem;border-radius:4px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--ink-primary);font-family:var(--font-mono);font-size:0.78rem;"></select>
+                </div>
+
+                <!-- Subset / Category Slice Filter (Section 22.4) -->
+                <div style="padding-top:0.65rem;border-top:1px solid var(--border-hairline);">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.3rem;">
+                    <label for="compass-subset-var-select" style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;color:var(--ink-muted);">
+                      Subset / Category Filter
+                    </label>
+                    <button type="button" class="find-view-pill" id="compass-clear-filter-btn" style="display:none;" onclick="clearCompassSubsetFilter()">Reset Filter ✕</button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;">
+                    <select id="compass-subset-var-select" aria-label="Subset filter variable" onchange="onCompassSubsetVarChange(this.value)" style="padding:0.38rem;border-radius:4px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--ink-primary);font-size:0.76rem;"></select>
+                    <select id="compass-subset-val-select" aria-label="Subset filter category value" onchange="onCompassSubsetValChange(this.value)" style="padding:0.38rem;border-radius:4px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--ink-primary);font-size:0.76rem;"></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Variable Browser & Semantic Type Override Panel -->
+            <div class="compass-panel">
+              <div class="compass-panel-header">
+                <span class="compass-panel-title">Variable Browser &amp; Type Inference</span>
+                <button type="button" class="find-view-pill" id="compass-reset-types-btn" style="display:none;" onclick="resetCompassTypeOverrides()">↺ Reset Types</button>
+              </div>
+              <div class="compass-panel-body">
+                <p style="font-size:0.75rem;color:var(--ink-muted);margin-bottom:0.65rem;">
+                  Click any variable to set it as the comparison pair, or override its inferred semantic role below.
+                </p>
+                <div class="compass-var-list" id="compass-ws-var-list"></div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- ===============================================================
+               CENTER COLUMN: PRIMARY PROFILE + 4-LAYER ANALYTICAL WORKSPACE
+               =============================================================== -->
+          <div class="compass-col-center">
+            <!-- Primary Variable Profile Card -->
+            <div class="compass-panel" style="margin-bottom:1.15rem;">
+              <div class="compass-panel-header">
+                <div>
+                  <span class="compass-panel-title">Primary Variable Profile</span>
+                  <strong id="compass-center-primary-name" style="margin-left:0.5rem;font-family:var(--font-mono);font-size:0.9rem;color:var(--ink-primary);"></strong>
+                </div>
+                <div id="compass-center-primary-badges" style="display:flex;gap:0.4rem;flex-wrap:wrap;"></div>
+              </div>
+              <div class="compass-panel-body" id="compass-center-primary-profile"></div>
+            </div>
+
+            <!-- 4-Layer Mode Switcher -->
+            <div class="compass-panel">
+              <div class="compass-mode-tabs" role="tablist" aria-label="Compass Analytical Layer">
+                <button type="button" class="compass-mode-tab active" id="compass-tab-explorer" onclick="setCompassCenterMode('explorer')">1 · Target Relationship Explorer</button>
+                <button type="button" class="compass-mode-tab" id="compass-tab-matrix" onclick="setCompassCenterMode('matrix')">2 · Compact Matrix (ggpairs)</button>
+                <button type="button" class="compass-mode-tab" id="compass-tab-pair" onclick="setCompassCenterMode('pair')">3 · Detailed Pair View &amp; Chart</button>
+                <button type="button" class="compass-mode-tab" id="compass-tab-table" onclick="setCompassCenterMode('table')">4 · Raw Data &amp; Hygiene Cells</button>
+              </div>
+
+              <!-- Layer 1: Target Relationship Explorer -->
+              <div class="compass-panel-body" id="compass-pane-explorer"></div>
+
+              <!-- Layer 2: Compact Relationship Matrix (ggpairs) -->
+              <div class="compass-panel-body" id="compass-pane-matrix" style="display:none;"></div>
+
+              <!-- Layer 3: Detailed Pair View -->
+              <div class="compass-panel-body" id="compass-pane-pair" style="display:none;"></div>
+
+              <!-- Layer 4: Raw Data & Hygiene Inspector -->
+              <div class="compass-panel-body" id="compass-pane-table" style="display:none;"></div>
+            </div>
+          </div>
+
+          <!-- ===============================================================
+               RIGHT COLUMN: QUALITY GATE, DATAMEND ROUND-TRIP & APP ROUTING
+               =============================================================== -->
+          <aside class="compass-col-right" aria-label="Quality Gate and Application Recommendations">
+            <!-- Analysis Readiness Gate Card -->
+            <div class="compass-panel" style="margin-bottom:1.15rem;">
+              <div class="compass-panel-header">
+                <span class="compass-panel-title">Analysis Readiness Gate</span>
+                <div id="compass-ws-readiness-badge"></div>
+              </div>
+              <div class="compass-panel-body" id="compass-ws-readiness-body"></div>
+            </div>
+
+            <!-- Ordered Ecosystem Application Recommendations -->
+            <div class="compass-panel">
+              <div class="compass-panel-header">
+                <span class="compass-panel-title">Recommended Next DataSense Labs</span>
+                <span class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald);">Ordered Workflow</span>
+              </div>
+              <div class="compass-panel-body" id="compass-ws-recommendations"></div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:0.75rem;">
+            <span class="brand-mark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2">
+                <circle cx="7" cy="16" r="2.2" fill="#34D399"/>
+                <circle cx="12" cy="10" r="2.2" fill="#F3F4F6"/>
+                <circle cx="17" cy="6" r="2.2" fill="#D9381E" stroke="#D9381E"/>
+              </svg>
+            </span>
+            <strong style="font-family:var(--font-display);font-size:1.35rem;color:#fff;">DataSense Studio</strong>
+          </div>
+          <p style="font-size:0.84rem;color:var(--inst-muted);max-width:42ch;line-height:1.6;">
+            Five focused browser-based statistical laboratories built for transparent methodology, perceptual honesty, and reproducible data science.
+          </p>
+        </div>
+
+        <div>
+          <div class="mono-num" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#fff;">Live Laboratories</div>
+          <ul class="footer-list" id="footer-app-links"></ul>
+        </div>
+
+        <div>
+          <div class="mono-num" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#fff;">Source Repositories</div>
+          <ul class="footer-list" id="footer-repo-links"></ul>
+        </div>
+
+        <div>
+          <div class="mono-num" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#fff;">Atelier Navigation</div>
+          <ul class="footer-list">
+            <li><button type="button" onclick="navigateTo('home')">Flagship Overview</button></li>
+            <li><button type="button" onclick="navigateTo('compass')">DataSense Compass (/compass/)</button></li>
+            <li><button type="button" onclick="navigateTo('apps')">Applications Directory (5 Labs)</button></li>
+            <li><button type="button" onclick="navigateTo('workflows')">Cross-Application Workflows</button></li>
+            <li><button type="button" onclick="navigateTo('finder')">Find Your Tool Recommender</button></li>
+            <li><button type="button" onclick="navigateTo('learn')">Unified Learning Pathways</button></li>
+            <li><button type="button" onclick="navigateTo('methods')">Statistical &amp; Visual Standards</button></li>
+            <li><button type="button" onclick="navigateTo('about')">About DataSense Studio</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;font-size:0.78rem;color:var(--inst-muted);flex-wrap:wrap;gap:0.75rem;">
+        <span>© DataSense Studio · Open-Source Browser-Native Statistical Ecosystem</span>
+        <span class="mono-num">Prepare → Visualize → Investigate → Infer → Forecast</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GLOBAL SEARCH MODAL -->
+  <div class="modal-backdrop" id="search-modal-backdrop" onclick="if(event.target===this)closeSearchModal()">
+    <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search DataSense Studio">
+      <div style="padding:0.9rem 1.1rem;border-bottom:1px solid var(--border-hairline);display:flex;align-items:center;gap:0.65rem;">
+        <input type="search" id="global-search-input" aria-label="Search tools, statistical methods, workflows, and learning modules" placeholder="Search tools, statistical methods (e.g., Cook's distance, BCa, MASE, raincloud)…" oninput="runGlobalSearch(this.value)" style="flex:1;border:none;outline:none;font-size:0.95rem;background:transparent;" />
+        <button type="button" class="kbd-pill" onclick="closeSearchModal()" style="cursor:pointer;">ESC</button>
+      </div>
+      <div style="padding:0.65rem 1.1rem;border-bottom:1px solid var(--border-hairline);display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center;">
+        <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ink-muted);">Quick queries:</span>
+        <button type="button" class="kbd-pill" style="cursor:pointer;" onclick="quickSearch('clean CSV')">clean CSV</button>
+        <button type="button" class="kbd-pill" style="cursor:pointer;" onclick="quickSearch('histogram')">histogram</button>
+        <button type="button" class="kbd-pill" style="cursor:pointer;" onclick="quickSearch('regression')">regression</button>
+        <button type="button" class="kbd-pill" style="cursor:pointer;" onclick="quickSearch('bootstrap')">bootstrap</button>
+        <button type="button" class="kbd-pill" style="cursor:pointer;" onclick="quickSearch('forecast')">forecast</button>
+      </div>
+      <div id="global-search-results" style="max-height:360px;overflow-y:auto;padding:0.75rem 1.1rem;"></div>
+    </div>
+  </div>
+
+  <!-- HIGH-DPI SCREENSHOT LIGHTBOX MODAL -->
+  <div class="modal-backdrop" id="lightbox-backdrop" onclick="if(event.target===this)closeLightbox()">
+    <div class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Workspace High-DPI Preview">
+      <div style="padding:0.75rem 1.1rem;border-bottom:1px solid var(--inst-border);display:flex;justify-content:space-between;align-items:center;">
+        <span class="mono-num" id="lightbox-title" style="font-size:0.82rem;color:#fff;">Workspace Capture</span>
+        <button type="button" class="btn btn-dark-outline btn-sm" onclick="closeLightbox()">Close ✕</button>
+      </div>
+      <div style="padding:1rem;background:#090B0E;">
+        <img id="lightbox-img" src="" alt="High resolution workspace preview" style="width:100%;max-height:78vh;object-fit:contain;display:block;border-radius:6px;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGNEER-STYLE FAVOURITES & FOLDERS CURATION DRAWER -->
+  <div class="modal-backdrop" id="fav-drawer-backdrop" onclick="if(event.target===this)closeFavouritesDrawer()"></div>
+  <aside class="fav-drawer" id="favourites-drawer" aria-label="Saved Instruments and Folders">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0.85rem;border-bottom:1px solid var(--inst-border);">
+      <div>
+        <span class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald-bright);text-transform:uppercase;">Personal Curation Kit</span>
+        <h2 style="font-family:var(--font-display);font-size:1.55rem;color:#fff;line-height:1.1;">Saved Finds &amp; Folders</h2>
+      </div>
+      <button type="button" class="btn btn-dark-outline btn-sm" onclick="closeFavouritesDrawer()">Close ✕</button>
+    </div>
+
+    <!-- Custom Folders Bar (Designeer 'Create folder' pattern) -->
+    <div style="background:#151921;border:1px solid var(--inst-border);border-radius:var(--radius-md);padding:0.85rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.55rem;">
+        <span class="mono-num" style="font-size:0.7rem;color:#9CA3AF;text-transform:uppercase;">Active Folders</span>
+        <span class="mono-num" style="font-size:0.68rem;color:var(--accent-emerald-bright);">Local Persistence</span>
+      </div>
+      <div id="fav-folders-list" style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.65rem;"></div>
+      <form onsubmit="createCustomFolder(event)" style="display:flex;gap:0.4rem;">
+        <input type="text" id="new-folder-input" aria-label="New folder name" placeholder="New folder (e.g., Clinical QA)…" style="flex:1;background:#090B0E;border:1px solid var(--inst-border);border-radius:6px;padding:0.38rem 0.6rem;color:#fff;font-size:0.78rem;" />
+        <button type="submit" class="btn btn-emerald btn-sm">+ Create</button>
+      </form>
+    </div>
+
+    <div id="fav-items-container" style="display:flex;flex-direction:column;gap:0.65rem;flex:1;overflow-y:auto;"></div>
+
+    <div style="padding-top:0.75rem;border-top:1px solid var(--inst-border);display:flex;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;">
+      <button type="button" class="btn btn-emerald btn-sm" style="flex:1;" onclick="copySavedKitMarkdown()">⎘ Copy Curated Kit (.md)</button>
+      <button type="button" class="btn btn-dark-outline btn-sm" onclick="resetDefaultFavourites()">↺ Reset Default Kit</button>
+    </div>
+  </aside>
+
+
+  <!-- DATASENSE COMPASS × DATAMEND LAB ROUND-TRIP HANDOFF & CLEANING WORKBENCH MODAL -->
+  <div class="modal-backdrop" id="compass-roundtrip-backdrop" onclick="if(event.target===this)closeCompassRoundTripModal()">
+    <div class="search-modal" role="dialog" aria-modal="true" aria-labelledby="compass-rt-modal-title" style="max-width:760px;">
+      <div style="padding:0.95rem 1.25rem;background:var(--bg-instrument);color:#fff;border-bottom:1px solid var(--inst-border);display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <span class="mono-num" style="font-size:0.68rem;color:#34D399;text-transform:uppercase;">Protocol datasense_compass_handoff_v1 · IndexedDB + BroadcastChannel</span>
+          <h3 id="compass-rt-modal-title" style="font-family:var(--font-display);font-size:1.35rem;color:#fff;margin-top:0.1rem;">DataMend Lab — Seamless Browser Handoff &amp; Cleaning Round-Trip</h3>
+        </div>
+        <button type="button" class="btn btn-dark-outline btn-sm" onclick="closeCompassRoundTripModal()">Close ✕</button>
+      </div>
+      <div style="padding:1.25rem;max-height:80vh;overflow-y:auto;display:flex;flex-direction:column;gap:1rem;" id="compass-rt-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- PASTE RAW CSV / TSV / JSON MODAL -->
+  <div class="modal-backdrop" id="compass-paste-backdrop" onclick="if(event.target===this)closeCompassPasteModal()">
+    <div class="search-modal" role="dialog" aria-modal="true" aria-labelledby="compass-paste-modal-title" style="max-width:640px;">
+      <div style="padding:0.9rem 1.2rem;border-bottom:1px solid var(--border-hairline);display:flex;justify-content:space-between;align-items:center;">
+        <strong id="compass-paste-modal-title" style="font-family:var(--font-display);font-size:1.25rem;">Paste Raw CSV, TSV, or DataSense JSON</strong>
+        <button type="button" class="kbd-pill" onclick="closeCompassPasteModal()" style="cursor:pointer;">ESC</button>
+      </div>
+      <div style="padding:1.1rem;display:flex;flex-direction:column;gap:0.75rem;">
+        <label for="compass-paste-name" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-muted);">Dataset Title</label>
+        <input type="text" id="compass-paste-name" value="Custom Pasted Dataset" style="padding:0.48rem 0.65rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--bg-surface);color:var(--ink-primary);font-size:0.85rem;" />
+        <label for="compass-paste-textarea" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-muted);">Raw Delimited Text or JSON</label>
+        <textarea id="compass-paste-textarea" rows="9" placeholder="col_a,col_b,category&#10;12.4,88.1,Group A&#10;15.0,92.3,Group B" style="width:100%;padding:0.65rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--bg-surface);color:var(--ink-primary);font-family:var(--font-mono);font-size:0.78rem;"></textarea>
+        <div style="display:flex;justify-content:flex-end;gap:0.5rem;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeCompassPasteModal()">Cancel</button>
+          <button type="button" class="btn btn-emerald btn-sm" onclick="submitCompassPastedData()">Parse &amp; Load in Compass →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING CRAFT TOAST -->
+  <div id="craft-toast" class="craft-toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+
+  <script>
+    window.DATASENSE_PUBLIC_BASE_PATH = "/datasense-studio/";
+    window.DATASENSE_ASSET_PREFIX = "../assets/";
+    window.DATASENSE_INITIAL_VIEW = "compass";
+  </script>
+  <script src="../assets/compass_engine.js"></script>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

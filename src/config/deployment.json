@@ -1,0 +1,9 @@
+{
+  "siteName": "DataSense Studio",
+  "canonicalOrigin": "https://rkohnmn.github.io",
+  "publicBasePath": "/datasense-studio/",
+  "protectRootPortfolio": true,
+  "rootPortfolioUrl": "https://rkohnmn.github.io/",
+  "compassRoute": "/datasense-studio/compass/",
+  "notes": "Defaults to /datasense-studio/ subpath so https://rkohnmn.github.io/ personal portfolio remains untouched. Set PUBLIC_BASE_PATH=/ to build for a dedicated root domain."
+}
