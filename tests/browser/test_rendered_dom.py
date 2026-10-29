@@ -146,7 +146,7 @@ sandbox.initApp();
 
 // 1. Verify Hero Title & Human-First Lead
 const heroTitle = sandbox.document.getElementById('hero-title').innerText;
-assert.ok(heroTitle.includes('A clearer way to work with data'), 'Hero title must include "A clearer way to work with data", got: ' + heroTitle);
+assert.ok(heroTitle.includes('Understand your data'), 'Hero title must include "Understand your data", got: ' + heroTitle);
 assert.ok(elementsById.has('hero-start-data-btn'), 'Hero must include #hero-start-data-btn primary CTA');
 
 // 2. Verify all 10 Authoritative URLs exist in rendered DOM sections

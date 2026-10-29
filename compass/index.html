@@ -181,7 +181,7 @@
         </span>
         <span>
           <span class="brand-title">DataSense Studio</span>
-          <span class="brand-sub">Statistical Instrument Atelier</span>
+          <span class="brand-sub">Statistical tools · local analysis</span>
         </span>
       </button>
 
@@ -226,6 +226,10 @@
       <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('methods');closeMobileMenu();"><span>Methods &amp; Standards</span><span class="mono-num">STD</span></button>
       <button type="button" class="btn btn-secondary" style="justify-content:space-between;" onclick="navigateTo('about');closeMobileMenu();"><span>About the Atelier</span><span class="mono-num">INF</span></button>
     </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button type="button" class="btn btn-secondary" onclick="closeMobileMenu();openSearchModal()">Search ecosystem</button>
+      <button type="button" class="btn btn-secondary" onclick="closeMobileMenu();openFavouritesDrawer()">Saved instruments</button>
+    </div>
     <div style="margin-top:0.5rem;padding-top:0.75rem;border-top:1px solid var(--border-hairline);">
       <div style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.5rem;">Direct Application Launch</div>
       <div id="mobile-direct-links" style="display:flex;flex-direction:column;gap:0.4rem;"></div>
@@ -234,6 +238,7 @@
 
   <!-- MAIN CONTENT -->
   <main id="main-content">
+    <div class="container"><div id="compass-import-status" class="compass-input-status" role="status" aria-live="polite" aria-atomic="true"></div></div>
 
     <!-- =================================================================
          VIEW: HOME (FLAGSHIP ATELIER HUB)
@@ -246,9 +251,9 @@
           <div class="hero-top-bar">
             <div class="atelier-kicker">
               <span class="pulse-dot" aria-hidden="true"></span>
-              <span>DataSense Studio · Five Browser-Native Statistical Labs · 100% Local &amp; Private</span>
+              <span>Your data. Your browser. Your next discovery.</span>
             </div>
-            <div class="hero-stage-ribbon" id="hero-stage-pills" role="tablist" aria-label="Analytical Lifecycle Stages">
+            <div class="hero-stage-ribbon" id="hero-stage-pills" role="group" aria-label="Analytical Lifecycle Stages">
               <button type="button" class="stage-pill" onclick="selectHeroStage(0)">01 Prepare</button>
               <button type="button" class="stage-pill" onclick="selectHeroStage(1)">02 Visualize</button>
               <button type="button" class="stage-pill active" onclick="selectHeroStage(2)">03 Investigate</button>
@@ -262,12 +267,18 @@
             <div class="hero-copy-col">
               <div>
                 <h1 class="hero-headline" id="hero-title">
-                  A clearer way to work with data — built to expose what summary tables hide.
+                  Understand your data.<br><em>Know what comes next.</em>
                 </h1>
                 <p class="hero-lead" style="margin-top:1rem;">
-                  Five connected tools for cleaning, visualizing, investigating, testing, and forecasting your data. Everything runs locally in your browser with zero server uploads — so you can audit raw tables, verify visual encodings, and test statistical assumptions with confidence.
+                  Check data quality, uncover relationships, and choose the right analysis. Compass connects you to five focused statistical labs, with your dataset processed locally in your browser.
                 </p>
               </div>
+
+              <div class="hero-cta-cluster">
+                <button type="button" class="btn btn-emerald" id="hero-start-data-btn" onclick="navigateTo('compass')">Start with Compass →</button>
+                <button type="button" class="btn btn-secondary" onclick="navigateTo('apps')">Explore the five labs</button>
+              </div>
+              <p class="hero-proof">No account needed · Try a sample or bring your own data</p>
 
               <!-- Dynamic Active Instrument Spotlight Card -->
               <div class="hero-active-spotlight">
@@ -289,12 +300,7 @@
                 </div>
               </div>
 
-              <div class="hero-cta-cluster">
-                <button type="button" class="btn btn-emerald" id="hero-start-data-btn" onclick="scrollToSection('compass-home-entry')">Start with Your Data →</button>
-                <button type="button" class="btn btn-primary" onclick="scrollToSection('product-showcases')">Explore All Labs →</button>
-                <button type="button" class="btn btn-secondary" onclick="scrollToSection('find-your-tool')">Find Your Tool →</button>
-                <button type="button" class="btn btn-secondary" onclick="navigateTo('apps')">Directory &amp; Source Repos</button>
-              </div>
+
             </div>
 
             <!-- Right Column: LIVE INTERACTIVE STATISTICAL INSTRUMENT -->
@@ -302,9 +308,9 @@
               <div class="instrument-topbar">
                 <div class="inst-window-meta">
                   <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-                  <span class="inst-mode-badge" id="inst-active-badge">LIVE INSTRUMENT · 60FPS SVG ENGINE</span>
+                  <span class="inst-mode-badge" id="inst-active-badge">LIVE INSTRUMENT · INTERACTIVE SVG SANDBOX</span>
                 </div>
-                <div class="workbench-tabs" id="hero-workbench-tabs" role="tablist" aria-label="Select Live Instrument Mode"></div>
+                <div class="workbench-tabs" id="hero-workbench-tabs" role="group" aria-label="Select Live Instrument Mode"></div>
               </div>
 
               <!-- Dynamic Mode Controls + Live vs Screenshot Toggle -->
@@ -341,17 +347,11 @@
           </div>
 
           <!-- DESIGNEER-INSPIRED QUICK-FINDS DISCOVERY BAR (ABOVE THE FOLD MAGNET) -->
-          <div class="hero-finds-strip" aria-label="Interactive Craft & Micro-Playgrounds">
-            <div class="hero-finds-label">
-              <span style="color:var(--accent-emerald);">✦ CURATED INTERFACE CRAFT</span>
-              <span>· Interactive Micro-Experiments &amp; Playable Instruments</span>
-            </div>
+          <div class="hero-finds-strip" aria-label="More ways to explore">
+            <span class="hero-finds-label">A question, but no dataset yet?</span>
             <div class="hero-finds-pills">
-              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-abacus')">🧮 Hover Quantile Abacus</button>
-              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-spring')">〰️ Spring LOESS Bandwidth</button>
-              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-shredder')">⚡ Sentinel -999 Shredder</button>
-              <button type="button" class="quick-find-pill" onclick="jumpToFind('find-palette')">🎨 Okabe-Ito Vision Sim</button>
-              <button type="button" class="quick-find-pill" onclick="scrollToSection('designeer-catalogue')">Browse All 9 Finds ↓</button>
+              <button type="button" class="quick-find-pill" onclick="navigateTo('finder')">Find the right tool →</button>
+              <button type="button" class="quick-find-pill" onclick="scrollToSection('designeer-catalogue')">Explore interactive lessons →</button>
             </div>
           </div>
         </div>
@@ -410,7 +410,7 @@
                     <span class="mono-num" style="font-size:0.72rem;text-transform:uppercase;color:var(--ink-muted);font-weight:600;">Step 1 · Try a Curated Sample Dataset (6 Scenarios)</span>
                     <span class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald);" id="compass-home-ds-meta">30 rows × 10 cols</span>
                   </div>
-                  <div class="compass-sample-pills" id="compass-home-sample-pills" role="tablist" aria-label="Sample Datasets"></div>
+                  <div class="compass-sample-pills" id="compass-home-sample-pills" role="group" aria-label="Sample Datasets"></div>
                   <p id="compass-home-ds-desc" style="font-size:0.82rem;color:var(--ink-secondary);margin-top:0.55rem;line-height:1.5;"></p>
                 </div>
 
@@ -480,58 +480,7 @@
       </section>
 
       <!-- 1.5 DESIGNEER-INSPIRED CURATED FINDS, MICRO-PLAYGROUNDS & TOOLKIT CATALOGUE -->
-      <section class="designeer-section" id="designeer-catalogue" aria-labelledby="designeer-heading">
-        <div class="container">
-          <div class="designeer-top-bar">
-            <div>
-              <span class="section-eyebrow" style="color:var(--accent-emerald-bright);">00 · Curated Discovery Feed · Inspired by Designeer Craft</span>
-              <h2 class="section-heading" id="designeer-heading" style="color:#FFFFFF;">Interactive Finds, Micro-Instruments &amp; Copyable Recipes</h2>
-            </div>
-            <p class="section-sublead" style="color:#9CA3AF;max-width:54ch;">
-              Every card below is a live interactive micro-laboratory. Hover or click inside any card to manipulate statistical mechanics in real time, switch between <strong style="color:#fff;">3 views</strong> (Live Play, UI Capture, Code Recipe), or save instruments to your custom folder.
-            </p>
-          </div>
 
-          <!-- Multi-Faceted Filter & Colour Swatch Deck (Designeer.xyz Pattern) -->
-          <div class="designeer-filter-deck" role="region" aria-label="Filter Interactive Finds and Instruments">
-            <div class="designeer-filter-row">
-              <div class="ds-cat-pills" id="ds-category-pills" role="tablist" aria-label="Catalogue Category Filter">
-                <button type="button" class="ds-cat-btn active" onclick="setDesigneerCategory('all')">All Finds (9)</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('micro')">✦ Micro-Playgrounds (4)</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('labs')">Flagship Labs (5)</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Prepare')">01 Prepare</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Visualize')">02 Visualize</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Investigate')">03 Investigate</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Infer')">04 Infer</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Forecast')">05 Forecast</button>
-                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('saved')">♥ Saved Folder</button>
-              </div>
-
-              <!-- Designeer 'All colours' Swatch Filter + Density Toggle -->
-              <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
-                <div class="ds-color-swatches" role="group" aria-label="Filter by instrument accent colour">
-                  <button type="button" class="ds-swatch-btn ds-swatch-all active" data-col="all" onclick="setDesigneerColor('all')">All colours</button>
-                  <button type="button" class="ds-swatch-btn" data-col="#0D9488" style="background:#0D9488;" title="Teal · Prepare / Hygiene" aria-label="Filter Teal Prepare" onclick="setDesigneerColor('#0D9488')"></button>
-                  <button type="button" class="ds-swatch-btn" data-col="#4F46E5" style="background:#4F46E5;" title="Indigo · Visualize / Perception" aria-label="Filter Indigo Visualize" onclick="setDesigneerColor('#4F46E5')"></button>
-                  <button type="button" class="ds-swatch-btn" data-col="#D9381E" style="background:#D9381E;" title="Vermilion · Investigate / Outliers" aria-label="Filter Vermilion Investigate" onclick="setDesigneerColor('#D9381E')"></button>
-                  <button type="button" class="ds-swatch-btn" data-col="#0F6E56" style="background:#34D399;" title="Emerald · Infer / Bootstrap" aria-label="Filter Emerald Infer" onclick="setDesigneerColor('#0F6E56')"></button>
-                  <button type="button" class="ds-swatch-btn" data-col="#2563EB" style="background:#3B82F6;" title="Cobalt · Forecast / Temporal" aria-label="Filter Cobalt Forecast" onclick="setDesigneerColor('#2563EB')"></button>
-                </div>
-
-                <div class="find-view-switcher" role="group" aria-label="Catalogue Grid Density">
-                  <button type="button" class="find-view-pill active" id="ds-density-grid" onclick="setDesigneerDensity('grid')">3-Col Grid</button>
-                  <button type="button" class="find-view-pill" id="ds-density-studio" onclick="setDesigneerDensity('studio')">2-Col Studio</button>
-                </div>
-
-                <button type="button" class="ds-cat-btn" onclick="openFavouritesDrawer()">📁 Folders (<span id="ds-folder-count">2</span>)</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Playable 9-Card Designeer Grid -->
-          <div class="designeer-grid" id="designeer-cards-grid"></div>
-        </div>
-      </section>
 
       <!-- 2. UNIFIED PIPELINE & MATHEMATICAL SIGNATURE MATRIX (NO REPEATED SCREENSHOTS) -->
       <section class="section-block" id="analytical-journey" aria-labelledby="journey-heading">
@@ -556,7 +505,7 @@
                 <button type="button" class="find-view-pill" id="uf-tab-yaml" onclick="setUserFlowView('yaml')">3 · FlowSpec YAML</button>
               </div>
             </div>
-            <div class="pipeline-stepper-bar" id="journey-stepper" role="tablist" aria-label="Analytical Handoff Stages"></div>
+            <div class="pipeline-stepper-bar" id="journey-stepper" role="group" aria-label="Analytical Handoff Stages"></div>
             <div class="journey-detail-box" id="journey-detail-panel"></div>
             <details class="technical-dossier-expander"><summary><span>Technical Specification · Deterministic User-Flow State Machine &amp; YAML Contract</span><span class="mono-num">Expand ▾</span></summary><div class="technical-dossier-body"><div class="flowspec-deck" id="userflow-spec-panel" aria-live="polite"></div></div></details>
           </div>
@@ -603,13 +552,66 @@
           </div>
 
           <div class="router-shell">
-            <div class="task-pill-list" id="home-finder-tasks" role="tablist" aria-label="Analytical Task Selector"></div>
+            <div class="task-pill-list" id="home-finder-tasks" role="group" aria-label="Analytical Task Selector"></div>
             <div class="router-prescription-box" id="home-finder-result"></div>
           </div>
         </div>
       </section>
 
       <!-- 5. ATELIER CRAFT, LEARNING PATHWAYS & AUTHORITATIVE LINK LEDGER -->
+      <section class="designeer-section" id="designeer-catalogue" aria-labelledby="designeer-heading">
+        <div class="container">
+          <div class="designeer-top-bar">
+            <div>
+              <span class="section-eyebrow" style="color:var(--accent-emerald-bright);">Learn by doing · Interactive statistical lessons</span>
+              <h2 class="section-heading" id="designeer-heading" style="color:#FFFFFF;">Make the statistics tangible.</h2>
+            </div>
+            <p class="section-sublead" style="color:#9CA3AF;max-width:54ch;">
+              Every card below is a live interactive micro-laboratory. Hover or click inside any card to manipulate statistical mechanics in real time, switch between <strong style="color:#fff;">3 views</strong> (Live Play, UI Capture, Code Recipe), or save instruments to your custom folder.
+            </p>
+          </div>
+
+          <!-- Multi-Faceted Filter & Colour Swatch Deck (Designeer.xyz Pattern) -->
+          <div class="designeer-filter-deck" role="region" aria-label="Filter Interactive Finds and Instruments">
+            <div class="designeer-filter-row">
+              <div class="ds-cat-pills" id="ds-category-pills" role="group" aria-label="Catalogue Category Filter">
+                <button type="button" class="ds-cat-btn active" onclick="setDesigneerCategory('all')">All Finds (9)</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('micro')">✦ Micro-Playgrounds (4)</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('labs')">Flagship Labs (5)</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Prepare')">01 Prepare</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Visualize')">02 Visualize</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Investigate')">03 Investigate</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Infer')">04 Infer</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('Forecast')">05 Forecast</button>
+                <button type="button" class="ds-cat-btn" onclick="setDesigneerCategory('saved')">♥ Saved Folder</button>
+              </div>
+
+              <!-- Designeer 'All colours' Swatch Filter + Density Toggle -->
+              <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+                <div class="ds-color-swatches" role="group" aria-label="Filter by instrument accent colour">
+                  <button type="button" class="ds-swatch-btn ds-swatch-all active" data-col="all" onclick="setDesigneerColor('all')">All colours</button>
+                  <button type="button" class="ds-swatch-btn" data-col="#0D9488" style="background:#0D9488;" title="Teal · Prepare / Hygiene" aria-label="Filter Teal Prepare" onclick="setDesigneerColor('#0D9488')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#4F46E5" style="background:#4F46E5;" title="Indigo · Visualize / Perception" aria-label="Filter Indigo Visualize" onclick="setDesigneerColor('#4F46E5')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#D9381E" style="background:#D9381E;" title="Vermilion · Investigate / Outliers" aria-label="Filter Vermilion Investigate" onclick="setDesigneerColor('#D9381E')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#0F6E56" style="background:#34D399;" title="Emerald · Infer / Bootstrap" aria-label="Filter Emerald Infer" onclick="setDesigneerColor('#0F6E56')"></button>
+                  <button type="button" class="ds-swatch-btn" data-col="#2563EB" style="background:#3B82F6;" title="Cobalt · Forecast / Temporal" aria-label="Filter Cobalt Forecast" onclick="setDesigneerColor('#2563EB')"></button>
+                </div>
+
+                <div class="find-view-switcher" role="group" aria-label="Catalogue Grid Density">
+                  <button type="button" class="find-view-pill active" id="ds-density-grid" onclick="setDesigneerDensity('grid')">3-Col Grid</button>
+                  <button type="button" class="find-view-pill" id="ds-density-studio" onclick="setDesigneerDensity('studio')">2-Col Studio</button>
+                </div>
+
+                <button type="button" class="ds-cat-btn" onclick="openFavouritesDrawer()">📁 Folders (<span id="ds-folder-count">2</span>)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Playable 9-Card Designeer Grid -->
+          <div class="designeer-grid" id="designeer-cards-grid"></div>
+        </div>
+      </section>
+
       <section class="section-block" id="trust-methods" aria-labelledby="trust-heading" style="border-bottom:none;">
         <div class="container">
           <div class="atelier-split">
@@ -775,7 +777,7 @@
               </div>
             </div>
           </div>
-          <div id="directory-results-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.25rem;"></div>
+          <div id="directory-results-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:1.25rem;"></div>
         </div>
       </section>
     </div>
@@ -821,7 +823,7 @@
             <p class="section-sublead">Match your analytical question or data quality bottleneck to the exact laboratory and companion handoff.</p>
           </div>
           <div class="router-shell">
-            <div class="task-pill-list" id="page-finder-tasks" role="tablist" aria-label="Analytical Task Selector"></div>
+            <div class="task-pill-list" id="page-finder-tasks" role="group" aria-label="Analytical Task Selector"></div>
             <div class="router-prescription-box" id="page-finder-result"></div>
           </div>
         </div>
@@ -874,7 +876,7 @@
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;">
             <div>
               <div style="display:flex;align-items:center;gap:0.55rem;flex-wrap:wrap;margin-bottom:0.35rem;">
-                <span class="mono-num" style="font-size:0.72rem;color:#34D399;letter-spacing:0.06em;">[ ROUTE /compass/ · INTELLIGENT DATA DISCOVERY, QUALITY GATING &amp; CROSS-APP ROUTING ]</span>
+                <span class="mono-num" style="font-size:0.72rem;color:#34D399;letter-spacing:0.06em;">DATASENSE COMPASS / DATA EXPLORER</span>
                 <span class="kbd-pill" id="compass-ws-format-badge" style="background:#151921;color:#E5E7EB;border-color:#2D3545;">CSV</span>
               </div>
               <h1 style="font-family:var(--font-display);font-size:clamp(1.75rem, 2.6vw, 2.35rem);font-weight:400;color:#FFFFFF;line-height:1.12;" id="compass-ws-title">
@@ -1018,7 +1020,7 @@
 
             <!-- 4-Layer Mode Switcher -->
             <div class="compass-panel">
-              <div class="compass-mode-tabs" role="tablist" aria-label="Compass Analytical Layer">
+              <div class="compass-mode-tabs" role="group" aria-label="Compass Analytical Layer">
                 <button type="button" class="compass-mode-tab active" id="compass-tab-explorer" onclick="setCompassCenterMode('explorer')">1 · Target Relationship Explorer</button>
                 <button type="button" class="compass-mode-tab" id="compass-tab-matrix" onclick="setCompassCenterMode('matrix')">2 · Compact Matrix (ggpairs)</button>
                 <button type="button" class="compass-mode-tab" id="compass-tab-pair" onclick="setCompassCenterMode('pair')">3 · Detailed Pair View &amp; Chart</button>
@@ -1211,6 +1213,8 @@
         <input type="text" id="compass-paste-name" value="Custom Pasted Dataset" style="padding:0.48rem 0.65rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--bg-surface);color:var(--ink-primary);font-size:0.85rem;" />
         <label for="compass-paste-textarea" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-muted);">Raw Delimited Text or JSON</label>
         <textarea id="compass-paste-textarea" rows="9" placeholder="col_a,col_b,category&#10;12.4,88.1,Group A&#10;15.0,92.3,Group B" style="width:100%;padding:0.65rem;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--bg-surface);color:var(--ink-primary);font-family:var(--font-mono);font-size:0.78rem;"></textarea>
+        <p class="import-limits">Up to 2 MB, 5,000 rows, 40 columns and 100,000 cells. Larger files should be reduced before import.</p>
+        <div id="compass-paste-status" class="compass-input-status" role="status" aria-live="polite"></div>
         <div style="display:flex;justify-content:flex-end;gap:0.5rem;">
           <button type="button" class="btn btn-secondary btn-sm" onclick="closeCompassPasteModal()">Cancel</button>
           <button type="button" class="btn btn-emerald btn-sm" onclick="submitCompassPastedData()">Parse &amp; Load in Compass →</button>

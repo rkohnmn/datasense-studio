@@ -6,8 +6,9 @@
   "scripts": {
     "build": "python3 scripts/asset-optimization/build_static.py",
     "serve": "python3 -m http.server 8080 --directory dist",
-    "test": "node tests/test_compass_engine.js && python3 tests/unit/test_registry_and_links.py && python3 tests/browser/test_rendered_dom.py",
-    "screenshots": "python3 scripts/screenshots/capture_workspaces.py"
+    "test": "node tests/test_compass_engine.js && node tests/test_import_regressions.js && python3 tests/unit/test_registry_and_links.py && python3 tests/browser/test_rendered_dom.py",
+    "screenshots": "python3 scripts/screenshots/capture_workspaces.py",
+    "test:browser": "python3 tests/browser/test_real_browser.py"
   },
   "repository": {
     "type": "git",

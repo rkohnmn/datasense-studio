@@ -60,7 +60,7 @@
     "primaryProductId": "quartetlab",
     "whyItFits": "QuartetLab pairs an interactive bivariate scatterplot with a live Gram-Schmidt exact-moment solver, synchronized Residuals vs. Fitted and Normal Q-Q plots, and automatic Cook's distance (D_i > 4/n) outlier halos.",
     "accomplishes": [
-      "Manipulates data points at 60fps while observing or locking x\u0304, s_x, y\u0304, s_y, r, and R\u00b2",
+      "Manipulates data points while observing or locking x\u0304, s_x, y\u0304, s_y, r, and R\u00b2",
       "Reveals how identical regression summaries can hide curvature or high-leverage points",
       "Generates Minitab/R computer output tables and printable AP/undergraduate worksheets"
     ],

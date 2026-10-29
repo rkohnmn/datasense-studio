@@ -21,6 +21,10 @@
       --inst-border: #262C3A;
       --inst-ink: #F3F4F6;
       --inst-muted: #9CA3AF;
+      --bg-canvas-elevated: var(--bg-elevated);
+      --bg-instrument: var(--inst-bg);
+      --inst-text: var(--inst-ink);
+      --accent-cobalt-tint: #EAF0FF;
 
       /* App accents */
       --col-datamend: #0D9488;
@@ -31,7 +35,7 @@
 
       --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
       --font-sans: 'Plus Jakarta Sans', 'Albert Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
       --radius-sm: 6px;
       --radius-md: 10px;
@@ -40,6 +44,9 @@
       --shadow-sm: 0 2px 6px rgba(20, 22, 25, 0.04);
       --shadow-md: 0 12px 32px -8px rgba(20, 22, 25, 0.08), 0 2px 6px rgba(20, 22, 25, 0.04);
       --shadow-lg: 0 24px 56px -12px rgba(13, 16, 20, 0.22);
+      --shadow-xs: var(--shadow-sm);
+      --shadow-soft: var(--shadow-md);
+      --shadow-card: var(--shadow-sm);
       --max-w: 1360px;
     }
 

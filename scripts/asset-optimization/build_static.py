@@ -518,6 +518,7 @@ def main():
     canonical_compass = f"{canonical_origin}{base_path}compass/"
 
     css_text = (SRC_DIR / "styles" / "main.css").read_text(encoding="utf-8")
+    css_text += "\n" + (SRC_DIR / "styles" / "product.css").read_text(encoding="utf-8")
     body_template = (SRC_DIR / "templates" / "body.html").read_text(encoding="utf-8")
     compass_engine_js = COMPASS_ENGINE_PATH.read_text(encoding="utf-8")
     app_js = (SRC_DIR / "scripts" / "app.js").read_text(encoding="utf-8")

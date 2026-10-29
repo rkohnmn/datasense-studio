@@ -3,12 +3,12 @@
 [![Live Website](https://img.shields.io/badge/Live%20Website-rkohnmn.github.io%2Fdatasense--studio-0D6954?style=flat-square)](https://rkohnmn.github.io/datasense-studio/)
 [![Compass Engine](https://img.shields.io/badge/Compass%20Engine-rkohnmn.github.io%2Fdatasense--studio%2Fcompass-D9381E?style=flat-square)](https://rkohnmn.github.io/datasense-studio/compass/)
 [![Privacy Guarantee](https://img.shields.io/badge/Privacy-100%25%20Client--Side%20Zero--Upload-10B981?style=flat-square)](#)
-[![Automated Tests](https://img.shields.io/badge/Tests-100%25%20Passing%20(22%20Scenarios)-brightgreen?style=flat-square)](#)
+[Testing and browser verification](TESTING.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
 **DataSense Studio** is the flagship public website, interactive statistical instrument showcase, and intelligent data-discovery hub connecting five browser-native statistical and data-analysis laboratories under the [`rkohnmn`](https://github.com/rkohnmn) ecosystem.
 
-Built on the principle of **100% client-side privacy**, all data processing, statistical computations, relationship calculations, and visual grammar rendering occur entirely within your local browser sandbox—**zero bytes ever leave your machine**.
+Dataset profiling and statistical calculations run locally in your browser. DataSense Studio does not upload imported datasets to a server. Loading the website still requests its static assets; opening a companion lab navigates to that separate application.
 
 ---
 
@@ -50,7 +50,7 @@ The DataSense ecosystem spans an intelligent discovery engine and five specializ
 
 ### `datasense_compass_handoff_v1` Round-Trip Protocol
 
-DataSense Compass communicates seamlessly with **DataMend Lab** through a standardized, zero-leakage client-side handoff protocol:
+**Supported workflow:** export a CSV from Compass, clean it in DataMend Lab, then re-import the cleaned file. The same-origin browser handoff below is a proposed protocol; its adapter is not yet wired to DataMend’s module-scoped workspace state. Automatic launch is marked unavailable until that integration is verified:
 
 ```mermaid
 sequenceDiagram
@@ -166,3 +166,22 @@ This ensures that deploying `datasense-studio` to GitHub Pages under the `datase
 
 Released under the [MIT License](LICENSE).
 Copyright © 2026 [Robert Kohn (rkohnmn)](https://github.com/rkohnmn).
+
+## Product audit and browser validation
+
+See [PRODUCT_AUDIT.md](PRODUCT_AUDIT.md) for the ecosystem map, implemented fixes, evidence, and remaining release work. Compass accepts CSV, TSV, TXT, and flat record JSON within 2 MB, 5,000 rows, 40 columns, and 100,000 cells. Invalid imports retain the current dataset.
+
+The default test command includes deterministic engine and DOM-harness tests. To run real Chromium journeys:
+
+```bash
+python -m pip install -r requirements-dev.txt
+python -m playwright install chromium
+npm run build
+npm run test:browser
+```
+
+Screenshots can be regenerated while `npm run serve` is running:
+
+```bash
+python scripts/screenshots/audit_ui.py --label after
+```

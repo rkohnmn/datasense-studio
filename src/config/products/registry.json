@@ -175,7 +175,7 @@
     "showcaseTheme": "The numbers don't tell the whole story.",
     "brandVoice": "Discover what summaries conceal.",
     "shortDescription": "Interactive bivariate dataset synthesis, exact-moment control, correlation, regression, residual analysis, and diagnostic exploration.",
-    "detailedDescription": "Reveal how datasets with identical summary statistics (means, standard deviations, correlation r, and OLS regression lines) can conceal radically different geometric structures, curvature, and high-leverage anomalies. QuartetLab pairs an interactive 60fps bivariate canvas and Gram-Schmidt exact-moment solver with synchronized Residual vs. Fitted and Normal Q-Q plots, live Cook's distance halos, and Minitab/R-standard regression output.",
+    "detailedDescription": "Reveal how datasets with identical summary statistics (means, standard deviations, correlation r, and OLS regression lines) can conceal radically different geometric structures, curvature, and high-leverage anomalies. QuartetLab pairs an interactive bivariate canvas and Gram-Schmidt exact-moment solver with synchronized Residual vs. Fitted and Normal Q-Q plots, live Cook's distance halos, and Minitab/R-standard regression output.",
     "category": "regression",
     "categoryLabel": "Bivariate Synthesis & Regression Diagnostics",
     "primaryPurpose": "Reveal how datasets with similar statistical summaries can behave very differently.",

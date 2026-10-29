@@ -81,7 +81,7 @@ const SCREENSHOT_DATA_URIS = SCREENSHOTS;
         repositoryUrl: "https://github.com/rkohnmn/quartetlab",
         accent: "#D9381E",
         shortDesc: "Interactive bivariate synthesis, exact-moment preservation, real-time OLS vs. Theil-Sen robustness, Leverage (hᵢᵢ), and Cook's Distance diagnostics.",
-        heroPrompt: "Drag any point on the live scatter plot (or click the Anscombe & Datasaurus presets) to watch OLS slope, 95% CI bands, Cook's Distance, and residuals respond at 60fps.",
+        heroPrompt: "Drag any point on the live scatter plot (or click the Anscombe & Datasaurus presets) to watch OLS slope, 95% CI bands, Cook's Distance, and residuals update as you move points.",
         questionAnswered: "Do my correlation (r), slope (β₁), and R² reflect genuine linear structure, or are they distorted by quadratic curvature or a single high-leverage outlier?",
         engineSpec: "Simulated Annealing Moment-Preserving Perturbation + Real-Time OLS / Theil-Sen / Cook's D Matrix",
         whenToLaunch: "Whenever reporting a bivariate correlation, linear regression, or investigating high-leverage outliers.",
@@ -305,14 +305,14 @@ const SCREENSHOT_DATA_URIS = SCREENSHOTS;
       if (!pillsEl || !tabsEl) return;
 
       pillsEl.innerHTML = APP_REGISTRY.map((app, idx) => `
-        <button type="button" class="stage-pill ${idx === activeHeroIndex ? 'active' : ''}" role="tab" aria-selected="${idx === activeHeroIndex}" onclick="selectHeroStage(${idx})">
+        <button type="button" class="stage-pill ${idx === activeHeroIndex ? 'active' : ''}" aria-pressed="${idx === activeHeroIndex}" onclick="selectHeroStage(${idx})">
           <span class="stage-dot" style="background:${app.accent}"></span>
           <span>${app.code} ${app.stage}</span>
         </button>
       `).join("");
 
       tabsEl.innerHTML = APP_REGISTRY.map((app, idx) => `
-        <button type="button" class="wb-tab ${idx === activeHeroIndex ? 'active' : ''}" role="tab" aria-selected="${idx === activeHeroIndex}" onclick="selectHeroStage(${idx})">
+        <button type="button" class="wb-tab ${idx === activeHeroIndex ? 'active' : ''}" aria-pressed="${idx === activeHeroIndex}" onclick="selectHeroStage(${idx})">
           ${app.code} ${app.name}
         </button>
       `).join("");
@@ -966,7 +966,7 @@ df_clean &lt;- df_raw |&gt;
       if (!stepperEl || !detailEl) return;
 
       stepperEl.innerHTML = APP_REGISTRY.map((app, idx) => `
-        <button type="button" class="pipe-node ${idx === activeJourneyIdx ? 'active' : ''}" role="tab" aria-selected="${idx === activeJourneyIdx}" onclick="selectJourneyStage(${idx})">
+        <button type="button" class="pipe-node ${idx === activeJourneyIdx ? 'active' : ''}" aria-pressed="${idx === activeJourneyIdx}" onclick="selectJourneyStage(${idx})">
           <span class="pipe-node-stage">
             <span>${app.code} ${app.stage}</span>
             <span>→</span>
@@ -1068,7 +1068,7 @@ steps:
         failureBranch: "Observation #3 exhibits Cook's Dᵢ = 0.84 (> 4/n) or Anscombe II exhibits quadratic curvature → Flag observation with vermilion halo & overlay Theil-Sen robust line",
         sandboxActionLabel: "Simulate Cook's D Outlier Hijack in Hero Sandbox ⚡",
         emptyState: "Load Anscombe I–IV, Datasaurus ring, or paste custom X/Y coordinate pairs.",
-        loadingState: "60fps SVG coordinate solver updating OLS, Theil-Sen, and Cook's D on pointer drag.",
+        loadingState: "Interactive SVG coordinate solver updating OLS, Theil-Sen, and Cook's D on pointer drag.",
         warningState: "Cook's Dᵢ > 4/n alert badge triggered when boundary outlier tilts OLS slope by +66%.",
         verifiedState: "OLS and robust Theil-Sen slopes reconciled with residual white-noise verification.",
         yamlSpec: `flow: stage_03_quartetlab_diagnostics
@@ -1559,7 +1559,7 @@ steps:
       tasksEl.innerHTML = FINDER_TASKS.map((t, idx) => {
         const app = APP_REGISTRY.find(a => a.id === t.primaryApp);
         return `
-          <button type="button" class="task-option-btn ${idx === activeFinderTaskIdx ? 'active' : ''}" role="tab" aria-selected="${idx === activeFinderTaskIdx}" onclick="selectFinderTask(${idx})">
+          <button type="button" class="task-option-btn ${idx === activeFinderTaskIdx ? 'active' : ''}" aria-pressed="${idx === activeFinderTaskIdx}" onclick="selectFinderTask(${idx})">
             <span>${t.prompt}</span>
             <span class="mono-num" style="font-size:0.7rem;color:var(--accent-emerald-bright);">${app.code} →</span>
           </button>
@@ -1720,6 +1720,11 @@ steps:
         .replace(/'/g, "&#39;");
     }
 
+    // Serialize for both the JavaScript-string and HTML-attribute contexts.
+    function inlineValue(value) {
+      return escapeHtml(JSON.stringify(String(value)));
+    }
+
     function resetDirectoryFilters() {
       activeDirCategory = "all";
       const inp = document.getElementById("dir-search-input");
@@ -1765,7 +1770,7 @@ steps:
           <div>
             <div class="bento-top-meta">
               <span class="bento-stage-tag">${app.stageBadge}</span>
-              <span class="mono-num" style="font-size:0.72rem;color:var(--accent-emerald);">● Live Verified</span>
+              <span class="mono-num" style="font-size:0.72rem;color:var(--accent-emerald);">● Open source</span>
             </div>
             <h2 class="bento-title" style="margin-top:0.5rem;">${app.name}</h2>
             <div class="bento-tagline">${app.tagline}</div>
@@ -2070,7 +2075,10 @@ steps:
       target.classList.add("active");
 
       document.querySelectorAll(".nav-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-route") === route);
+        const active = btn.getAttribute("data-route") === route;
+        btn.classList.toggle("active", active);
+        if (active) btn.setAttribute("aria-current", "page");
+        else btn.removeAttribute("aria-current");
       });
       if (ROUTE_TITLES[route]) {
         document.title = ROUTE_TITLES[route];
@@ -2241,7 +2249,18 @@ steps:
 
     // Keyboard shortcuts ('/' for search, 'Escape' to close modals)
     window.addEventListener("keydown", (e) => {
-      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+      if (e.key === "Tab") {
+        const modal = document.querySelector('.modal-backdrop.open [role="dialog"], .mobile-drawer.open, .fav-drawer.open');
+        if (modal) {
+          const controls = Array.from(modal.querySelectorAll('button, a[href], input, select, textarea, [tabindex="0"]')).filter(el => !el.disabled && el.getClientRects().length);
+          const first = controls[0], last = controls[controls.length - 1];
+          if (first && (!modal.contains(document.activeElement) || (e.shiftKey && document.activeElement === first) || (!e.shiftKey && document.activeElement === last))) {
+            e.preventDefault();
+            (e.shiftKey ? last : first).focus();
+          }
+        }
+      }
+      if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable) {
         e.preventDefault();
         openSearchModal();
       } else if (e.key === "Escape") {
@@ -2249,6 +2268,8 @@ steps:
         closeLightbox();
         closeMobileMenu();
         closeFavouritesDrawer();
+        closeCompassPasteModal();
+        closeCompassRoundTripModal();
       }
     });
 
@@ -3211,8 +3232,11 @@ steps:
     function selectCompassSample(sampleId, fromHome = false) {
       const sample = DataSenseCompassEngine.SAMPLE_DATASETS[sampleId];
       if (!sample) return;
+      ++compassImportGeneration;
+      setCompassImportStatus("");
       compassState.activeSampleId = sampleId;
       compassState.customDataset = null;
+      compassState.uncleanedBackupDataset = null;
       compassState.primaryVar = sample.defaultPrimaryVar;
       compassState.secondaryVar = null;
       compassState.temporalOutcomeVar = null;
@@ -3281,7 +3305,7 @@ steps:
       ["explorer", "matrix", "pair", "table"].forEach(m => {
         const tab = document.getElementById(`compass-tab-${m}`);
         const pane = document.getElementById(`compass-pane-${m}`);
-        if (tab) tab.classList.toggle("active", m === mode);
+        if (tab) { tab.classList.toggle("active", m === mode); tab.setAttribute("aria-pressed", String(m === mode)); }
         if (pane) pane.style.display = m === mode ? "block" : "none";
       });
     }
@@ -3332,60 +3356,102 @@ steps:
       }
     }
 
+    const COMPASS_IMPORT_LIMITS = { bytes: 2 * 1024 * 1024, rows: 5000, columns: 40, cells: 100000 };
+    let compassImportGeneration = 0;
+    let compassPasteTrigger = null;
+
+    function setCompassImportStatus(message, state = "info") {
+      ["compass-import-status", "compass-paste-status"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.textContent = message; el.dataset.state = state; }
+      });
+    }
+
+    function validateCompassImport(parsed) {
+      const issue = parsed.parseIssues.find(issue => issue.severity === "error");
+      if (issue) throw new Error(issue.message);
+      if (!parsed.headers.length || !parsed.rows.length) throw new Error("Add column headers and at least one data row, then try again.");
+      if (parsed.rows.length > COMPASS_IMPORT_LIMITS.rows || parsed.headers.length > COMPASS_IMPORT_LIMITS.columns || parsed.rows.length * parsed.headers.length > COMPASS_IMPORT_LIMITS.cells) {
+        throw new Error("This dataset exceeds the interactive limit: 5,000 rows, 40 columns or 100,000 cells. Choose a smaller subset and try again.");
+      }
+    }
+
+    function loadCompassImport(content, name, navigateToWorkspace) {
+      if (new Blob([content]).size > COMPASS_IMPORT_LIMITS.bytes) throw new Error("This input exceeds 2 MB. Choose a smaller file or subset.");
+      const parsed = DataSenseCompassEngine.parseDatasetInput(content, {
+        id: "upload_" + Date.now(), name, description: "Imported locally in this browser"
+      });
+      validateCompassImport(parsed);
+      const previous = compassState;
+      compassState = { ...previous, customDataset: parsed, activeSampleId: null,
+        uncleanedBackupDataset: null, activeHandoffEnvelope: null,
+        primaryVar: null, secondaryVar: null, temporalOutcomeVar: null,
+        typeOverrides: parsed.typeOverrides || {}, subsetFilter: { variable: "", value: "ALL" } };
+      try { runCompassAnalysisAndRender(); }
+      catch (error) {
+        compassState = previous;
+        runCompassAnalysisAndRender();
+        throw error;
+      }
+      if (navigateToWorkspace) navigateTo("compass");
+      const warning = parsed.parseIssues.filter(issue => issue.severity !== "info").map(issue => issue.message).join(" ");
+      setCompassImportStatus(`Loaded ${name}: ${parsed.rows.length.toLocaleString()} rows × ${parsed.headers.length} columns.${warning ? " Review: " + warning : " Your data stays in this browser."}`, "success");
+    }
+
     function processUploadedCompassFile(file, navigateToWorkspace = true) {
+      const generation = ++compassImportGeneration;
+      if (file.size > COMPASS_IMPORT_LIMITS.bytes) {
+        setCompassImportStatus("This file exceeds 2 MB. Choose a smaller subset; your current dataset is unchanged.", "error");
+        return;
+      }
+      if (!/\.(csv|tsv|txt|json)$/i.test(file.name)) {
+        setCompassImportStatus("Choose a CSV, TSV, TXT or JSON file. Your current dataset is unchanged.", "error");
+        return;
+      }
+      setCompassImportStatus(`Reading ${file.name} locally…`, "loading");
       const reader = new FileReader();
       reader.onload = (ev) => {
-        const content = String(ev.target.result || "");
-        const parsed = DataSenseCompassEngine.parseDatasetInput(content, {
-          id: "upload_" + Date.now(),
-          name: file.name,
-          description: `Uploaded local file (${(file.size / 1024).toFixed(1)} KB)`
-        });
-        compassState.customDataset = parsed;
-        compassState.activeSampleId = null;
-        compassState.primaryVar = parsed.headers[0] || null;
-        compassState.secondaryVar = null;
-        compassState.typeOverrides = parsed.typeOverrides || {};
-        compassState.subsetFilter = { variable: "", value: "ALL" };
-        runCompassAnalysisAndRender();
-        if (navigateToWorkspace) {
-          navigateTo("compass");
-        }
-        showCraftToast(`Loaded ${file.name} (${parsed.rows.length} rows × ${parsed.headers.length} columns)`);
+        if (generation !== compassImportGeneration) return;
+        setCompassImportStatus(`Analyzing ${file.name}…`, "loading");
+        setTimeout(() => {
+          if (generation !== compassImportGeneration) return;
+          try { loadCompassImport(String(ev.target.result || ""), file.name, navigateToWorkspace); }
+          catch (error) { setCompassImportStatus(`Could not load ${file.name}. ${error.message} Your current dataset is unchanged.`, "error"); }
+        }, 30);
+      };
+      reader.onerror = () => {
+        if (generation === compassImportGeneration) setCompassImportStatus("The file could not be read. Try selecting it again. Your current dataset is unchanged.", "error");
       };
       reader.readAsText(file);
     }
 
     function openCompassPasteModal() {
+      compassPasteTrigger = document.activeElement;
       const bd = document.getElementById("compass-paste-backdrop");
       if (bd) bd.classList.add("open");
+      const status = document.getElementById("compass-paste-status");
+      if (status) status.textContent = "";
+      document.getElementById("compass-paste-textarea").focus();
     }
 
     function closeCompassPasteModal() {
       const bd = document.getElementById("compass-paste-backdrop");
-      if (bd) bd.classList.remove("open");
+      if (bd && bd.classList.contains("open")) {
+        bd.classList.remove("open");
+        if (compassPasteTrigger) compassPasteTrigger.focus();
+      }
     }
 
     function submitCompassPastedData() {
-      const nameInput = document.getElementById("compass-paste-name");
-      const textInput = document.getElementById("compass-paste-textarea");
-      const rawText = textInput ? textInput.value : "";
-      const title = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "Custom Pasted Dataset";
-      const parsed = DataSenseCompassEngine.parseDatasetInput(rawText, {
-        id: "pasted_" + Date.now(),
-        name: title,
-        description: "User-pasted dataset"
-      });
-      compassState.customDataset = parsed;
-      compassState.activeSampleId = null;
-      compassState.primaryVar = parsed.headers[0] || null;
-      compassState.secondaryVar = null;
-      compassState.typeOverrides = parsed.typeOverrides || {};
-      compassState.subsetFilter = { variable: "", value: "ALL" };
-      closeCompassPasteModal();
-      runCompassAnalysisAndRender();
-      navigateTo("compass");
-      showCraftToast(`Loaded "${title}" (${parsed.rows.length} rows)`);
+      ++compassImportGeneration;
+      const rawText = document.getElementById("compass-paste-textarea").value;
+      const title = document.getElementById("compass-paste-name").value.trim() || "Pasted dataset";
+      try {
+        loadCompassImport(rawText, title, true);
+        closeCompassPasteModal();
+      } catch (error) {
+        setCompassImportStatus(`${error.message} Your current dataset is unchanged.`, "error");
+      }
     }
 
     // =========================================================================
@@ -3684,20 +3750,20 @@ steps:
           return `
             <div class="compass-var-item ${isPrimary ? 'is-primary' : ''} ${isSecondary ? 'is-secondary' : ''}">
               <div style="display:flex;justify-content:space-between;align-items:center;gap:0.35rem;">
-                <button type="button" onclick="${isPrimary ? '' : `selectCompassSecondaryPair('${escapeHtml(p.name)}', true)`}" style="background:none;border:none;padding:0;text-align:left;cursor:${isPrimary ? 'default' : 'pointer'};font-family:var(--font-mono);font-size:0.8rem;font-weight:600;color:var(--ink-primary);">
+                <button type="button" onclick="${isPrimary ? '' : `selectCompassSecondaryPair(${inlineValue(p.name)}, true)`}" style="background:none;border:none;padding:0;text-align:left;cursor:${isPrimary ? 'default' : 'pointer'};font-family:var(--font-mono);font-size:0.8rem;font-weight:600;color:var(--ink-primary);">
                   ${escapeHtml(p.name)} ${isPrimary ? '<span style="color:var(--accent-emerald);font-size:0.68rem;">[PRIMARY]</span>' : ''}
                 </button>
                 <span class="mono-num" style="font-size:0.68rem;color:var(--ink-muted);">n=${p.validCount} · ${p.distinctCount} uniq</span>
               </div>
               <div style="display:flex;justify-content:space-between;align-items:center;gap:0.4rem;margin-top:0.38rem;">
-                <select aria-label="Override semantic type for ${escapeHtml(p.name)}" onchange="onCompassTypeOverride('${escapeHtml(p.name)}', this.value)" style="font-family:var(--font-mono);font-size:0.69rem;padding:0.2rem 0.35rem;border-radius:4px;border:1px solid var(--border-strong);background:var(--bg-canvas-elevated);color:var(--ink-secondary);max-width:175px;">
+                <select aria-label="Override semantic type for ${escapeHtml(p.name)}" onchange="onCompassTypeOverride(${inlineValue(p.name)}, this.value)" style="font-family:var(--font-mono);font-size:0.69rem;padding:0.2rem 0.35rem;border-radius:4px;border:1px solid var(--border-strong);background:var(--bg-canvas-elevated);color:var(--ink-secondary);max-width:175px;">
                   ${allSemanticOptions.map(([typeKey, typeLabel]) => `
                     <option value="${typeKey}" ${p.effectiveType === typeKey ? 'selected' : ''}>
                       ${typeLabel}${p.inferredType === typeKey ? ' (Auto)' : ' (Override)'}
                     </option>
                   `).join("")}
                 </select>
-                ${!isPrimary ? `<button type="button" class="find-view-pill" style="font-size:0.66rem;padding:0.15rem 0.45rem;" onclick="onCompassPrimaryChange('${escapeHtml(p.name)}', false)">Set Primary</button>` : ''}
+                ${!isPrimary ? `<button type="button" class="find-view-pill" style="font-size:0.66rem;padding:0.15rem 0.45rem;" onclick="onCompassPrimaryChange(${inlineValue(p.name)}, false)">Set Primary</button>` : ''}
               </div>
               ${flagsHtml ? `<div style="margin-top:0.3rem;display:flex;gap:0.4rem;flex-wrap:wrap;">${flagsHtml}</div>` : ''}
             </div>
@@ -3739,8 +3805,8 @@ steps:
         const ns = pProf.numericSummary;
         const histSvg = renderMiniHistogramSVG(ns.bins, 280, 64, "#0F6E56");
         bodyEl.innerHTML = `
-          <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:1rem;align-items:center;">
-            <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:0.55rem;" class="mono-num">
+          <div class="profile-summary-grid">
+            <div class="numeric-summary-cells mono-num">
               <div style="padding:0.5rem;background:var(--bg-canvas-elevated);border-radius:4px;">
                 <div style="font-size:0.66rem;color:var(--ink-muted);">MEAN ± SD</div>
                 <div style="font-size:0.86rem;font-weight:600;margin-top:0.15rem;">${ns.mean.toFixed(2)} ± ${ns.sd.toFixed(2)}</div>
@@ -3855,7 +3921,7 @@ steps:
                 </thead>
                 <tbody>
                   ${sorted.map(item => `
-                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">
+                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">
                       <td><strong>${escapeHtml(item.variable)}</strong> <span class="compass-type-badge">${escapeHtml(item.typeLabel)}</span></td>
                       <td class="mono-num">${item.isUndefined ? '<span style="color:var(--accent-vermilion);font-weight:600;">Undefined</span>' : `<strong>${item.pearsonR.toFixed(3)}</strong> (R²=${(item.rSquared * 100).toFixed(0)}%)`}</td>
                       <td class="mono-num">${item.spearmanRho === null ? '<span style="color:var(--ink-muted);">Undefined</span>' : item.spearmanRho.toFixed(3)}</td>
@@ -3865,7 +3931,7 @@ steps:
                           ? `<span style="color:var(--accent-vermilion);font-weight:600;">⚡ Non-Linear Curve (binned η²=${item.binnedEtaSq.toFixed(2)})</span>`
                           : escapeHtml(item.undefinedReason || `${item.direction} · ${item.strengthLabel}`)}
                       </td>
-                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">Inspect Pair →</button></td>
+                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">Inspect Pair →</button></td>
                     </tr>
                   `).join("")}
                 </tbody>
@@ -3906,13 +3972,13 @@ steps:
                 </thead>
                 <tbody>
                   ${sorted.map(item => `
-                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">
+                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">
                       <td><strong>${escapeHtml(item.variable)}</strong> <span class="compass-type-badge">${escapeHtml(item.typeLabel)}</span></td>
                       <td class="mono-num">${item.isUndefined ? '<span style="color:var(--accent-vermilion);">Undefined</span>' : `<strong>${item.etaSquared.toFixed(3)}</strong> (${(item.etaSquared * 100).toFixed(1)}% var)`}</td>
                       <td class="mono-num">${item.pointBiserial !== null ? `${item.pointBiserial.toFixed(3)}` : '<span style="color:var(--ink-muted);">k &gt; 2 groups</span>'}</td>
                       <td class="mono-num">${item.groupCount} groups · n = ${item.validN}</td>
                       <td>${escapeHtml(item.undefinedReason || item.strengthLabel)} (Δ mean = ${item.meanSpread.toFixed(2)})</td>
-                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">Inspect Groups →</button></td>
+                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">Inspect Groups →</button></td>
                     </tr>
                   `).join("")}
                 </tbody>
@@ -3948,13 +4014,13 @@ steps:
                 </thead>
                 <tbody>
                   ${sorted.map(item => `
-                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">
+                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">
                       <td><strong>${escapeHtml(item.variable)}</strong> <span class="compass-type-badge">${escapeHtml(item.typeLabel)}</span></td>
                       <td class="mono-num">${item.isUndefined ? 'Undefined' : `<strong>${item.cramersV.toFixed(3)}</strong> (Ṽ=${item.cramersVBiasCorrected.toFixed(3)})`}</td>
                       <td class="mono-num">${item.isUndefined ? '—' : item.chiSquare.toFixed(2)}</td>
                       <td class="mono-num">n = ${item.validN} (${item.sparseCellCount} sparse)</td>
                       <td>${escapeHtml(item.undefinedReason || item.strengthLabel)}</td>
-                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">Contingency Table →</button></td>
+                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">Contingency Table →</button></td>
                     </tr>
                   `).join("")}
                 </tbody>
@@ -3982,12 +4048,12 @@ steps:
                 </thead>
                 <tbody>
                   ${fam.temporalSeries.map(item => `
-                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">
+                    <tr class="compass-rel-row ${res.secondaryVar === item.variable ? 'active-pair' : ''}" onclick="selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">
                       <td><strong>${escapeHtml(item.variable)}</strong> <span class="compass-type-badge">${escapeHtml(item.typeLabel)}</span></td>
                       <td class="mono-num">${item.isUndefined ? 'Undefined' : `<strong>${item.trendR.toFixed(3)}</strong>`}</td>
                       <td class="mono-num">${item.lag1Autocorr !== null ? item.lag1Autocorr.toFixed(3) : 'n/a'}</td>
                       <td class="mono-num">n = ${item.validN}</td>
-                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair('${escapeHtml(item.variable)}', true)">Plot Time Series →</button></td>
+                      <td><button type="button" class="find-view-pill" onclick="event.stopPropagation();selectCompassSecondaryPair(${inlineValue(item.variable)}, true)">Plot Time Series →</button></td>
                     </tr>
                   `).join("")}
                 </tbody>
@@ -4068,11 +4134,11 @@ steps:
               }
             }
             cellsHtml.push(`
-              <div class="ggpairs-cell" onclick="compassState.primaryVar='${escapeHtml(cell.rowVar)}';selectCompassSecondaryPair('${escapeHtml(cell.colVar)}', true)" title="Inspect ${escapeHtml(cell.rowVar)} × ${escapeHtml(cell.colVar)}">
+              <button type="button" class="ggpairs-cell" onclick="compassState.primaryVar=${inlineValue(cell.rowVar)};selectCompassSecondaryPair(${inlineValue(cell.colVar)}, true)" title="Inspect ${escapeHtml(cell.rowVar)} × ${escapeHtml(cell.colVar)}">
                 <span class="mono-num" style="font-size:0.63rem;color:var(--ink-muted);">${escapeHtml(pair.family.replace('_', '×'))}</span>
                 <strong class="mono-num" style="font-size:0.78rem;color:${badgeCol};">${metricText}</strong>
                 <span class="mono-num" style="font-size:0.62rem;color:var(--ink-muted);">n=${pair.validN}</span>
-              </div>
+              </button>
             `);
           }
         });
@@ -4089,13 +4155,13 @@ steps:
         </div>
         <div class="ggpairs-mobile-cards" aria-label="Mobile Pairwise Summary List">
           ${res.explorer.allPairs.slice(0, 8).map(p => `
-            <div class="ggpairs-mobile-card" onclick="selectCompassSecondaryPair('${escapeHtml(p.otherVariable)}', true)">
+            <button type="button" class="ggpairs-mobile-card" onclick="selectCompassSecondaryPair(${inlineValue(p.otherVariable)}, true)">
               <div>
                 <strong style="font-size:0.82rem;color:var(--ink-primary);">${escapeHtml(res.primaryVar)} × ${escapeHtml(p.otherVariable)}</strong>
                 <div class="mono-num" style="font-size:0.68rem;color:var(--ink-muted);">${escapeHtml((p.analysis && p.analysis.family ? p.analysis.family.replace('_', ' × ') : 'pair'))} · n=${p.analysis ? p.analysis.validN : 0}</div>
               </div>
               <span class="mono-num" style="font-size:0.78rem;font-weight:600;color:var(--accent-emerald);">Inspect Pair →</span>
-            </div>
+            </button>
           `).join("")}
         </div>
       `;
@@ -4653,10 +4719,10 @@ steps:
             <span class="compass-type-badge mono-num">datamend-adapter/datamend-compass-adapter.js</span>
           </div>
           <p style="font-size:0.78rem;color:var(--ink-secondary);margin-top:0.25rem;line-height:1.46;">
-            Compass stages your dataset and diagnostic recipe in browser <code class="mono-num">IndexedDB</code> / <code class="mono-num">localStorage</code> under <code class="mono-num">datasense_compass_handoff_v1</code>. Because <code class="mono-num">rkohnmn/datamend-lab</code> is an independent repository, automatic cross-tab consumption requires adding the included <code class="mono-num">datamend-adapter/datamend-compass-adapter.js</code> script to DataMend Lab. Until that adapter is deployed in <code class="mono-num">rkohnmn/datamend-lab</code>, use the File-Based Export/Re-Import workflow above.
+            The browser handoff is experimental. The <code class="mono-num">datamend-compass-adapter.js</code> adapter exists, but importing the staged dataset into DataMend's workspace and returning its active data are not yet verified end to end. Use the file-based export and re-import workflow above. Browser handoff also requires both apps to share the same origin and have storage available.
           </p>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.65rem;">
-            <a href="https://rkohnmn.github.io/datamend-lab/?compass_handoff=${encodeURIComponent(envelope.handoffId)}&amp;return_to=${encodeURIComponent(envelope.returnUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Launch DataMend Lab with Handoff URL ↗</a>
+            <span class="compass-type-badge">Automatic browser handoff: not ready · Use file export and re-import</span>
           </div>
         </div>
 
@@ -4674,7 +4740,7 @@ steps:
             <label style="display:flex;align-items:center;gap:0.45rem;"><input type="checkbox" id="dm-opt-units" checked /> Strip embedded units ("138 mmHg" → 138)</label>
             <label style="display:flex;align-items:center;gap:0.45rem;"><input type="checkbox" id="dm-opt-cats" checked /> Normalize category casing &amp; whitespace</label>
             <label style="display:flex;align-items:center;gap:0.45rem;"><input type="checkbox" id="dm-opt-dates" checked /> Repair/standardize dates to ISO-8601</label>
-            <label style="display:flex;align-items:center;gap:0.45rem;"><input type="checkbox" id="dm-opt-dups" checked /> Deduplicate identical rows / ID keys</label>
+            <label style="display:flex;align-items:center;gap:0.45rem;"><input type="checkbox" id="dm-opt-dups" checked /> Remove exact duplicate records only</label>
           </div>
 
           <div style="margin-top:0.75rem;padding-top:0.65rem;border-top:1px dashed var(--border-hairline);display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;font-size:0.78rem;">
@@ -4683,7 +4749,7 @@ steps:
           </div>
 
           <div style="margin-top:0.85rem;display:flex;gap:0.55rem;flex-wrap:wrap;">
-            <button type="button" class="btn btn-emerald btn-sm" onclick="executeInAppDataMendRoundTrip()">✓ Execute DataMend Cleaning &amp; Return to Compass</button>
+            <button type="button" class="btn btn-emerald btn-sm" onclick="executeInAppDataMendRoundTrip()">Apply local cleaning preview</button>
             ${compassState.uncleanedBackupDataset ? `<button type="button" class="btn btn-secondary btn-sm" onclick="restoreOriginalCompassDataset()">↺ Restore Original Unmodified Dataset</button>` : ''}
           </div>
         </div>
@@ -4705,6 +4771,10 @@ steps:
       }
       const renameInput = document.getElementById("dm-opt-rename-to");
       const renameTo = renameInput && renameInput.value.trim() ? renameInput.value.trim() : null;
+      if (renameTo && renameTo !== res.primaryVar && res.dataset.headers.includes(renameTo)) {
+        showCraftToast("Choose a new column name. An existing column cannot be overwritten.");
+        return;
+      }
 
       const cleanedResult = DataSenseCompassEngine.executeDataMendCleaning(res.dataset, {
         recodeSentinels: document.getElementById("dm-opt-sentinels")?.checked !== false,

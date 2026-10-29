@@ -502,6 +502,8 @@
     const seenHeaders = new Map();
     const emptyHeaderIndices = [];
     const duplicateHeaderNames = [];
+    const usedHeaders = new Set();
+    const reservedHeaders = new Set(rawHeaders.map(h => String(h || '').trim().toLowerCase()).filter(Boolean));
 
     rawHeaders.forEach((h, idx) => {
       let cleanH = String(h || '').trim();
@@ -518,6 +520,12 @@
       } else {
         seenHeaders.set(lower, 1);
       }
+      const base = cleanH;
+      let suffix = 2;
+      while (usedHeaders.has(cleanH.toLowerCase()) || (cleanH !== String(h || '').trim() && reservedHeaders.has(cleanH.toLowerCase()))) {
+        cleanH = `${base}_${suffix++}`;
+      }
+      usedHeaders.add(cleanH.toLowerCase());
       headers.push(cleanH);
     });
 
@@ -545,7 +553,7 @@
       if (rowArr.length !== expectedWidth) {
         inconsistentRows.push({ rowNumber: r + 1, found: rowArr.length, expected: expectedWidth });
       }
-      const rowObj = {};
+      const rowObj = Object.create(null);
       for (let c = 0; c < expectedWidth; c++) {
         rowObj[headers[c]] = rowArr[c] !== undefined ? rowArr[c] : '';
       }
@@ -677,6 +685,22 @@
       }
     }
 
+    if (rows.some(r => !r || typeof r !== 'object' || Array.isArray(r))) {
+      parseIssues.push({ severity: 'error', code: 'INVALID_JSON_ROWS', message: 'Every JSON row must be a record object with named columns.' });
+      rows = [];
+    }
+    if (headers.some(h => typeof h !== 'string' || !h.trim()) || new Set(headers).size !== headers.length) {
+      parseIssues.push({ severity: 'error', code: 'INVALID_JSON_HEADERS', message: 'JSON column headers must be unique, non-empty strings.' });
+      headers = [];
+      rows = [];
+    }
+    if (rows.some(r => Object.values(r).some(v => v !== null && typeof v === 'object'))) {
+      parseIssues.push({ severity: 'error', code: 'NESTED_JSON_VALUES', message: 'Nested JSON values are not supported. Flatten objects and arrays into columns before importing.' });
+      rows = [];
+    }
+    if (headers.length && rows.some(r => Object.keys(r).some(k => !headers.includes(k)))) {
+      parseIssues.push({ severity: 'error', code: 'UNLISTED_JSON_COLUMN', message: 'Some JSON row fields are missing from the headers list. Include every field to avoid data loss.' });
+    }
     if (headers.length === 0 && rows.length > 0 && typeof rows[0] === 'object' && rows[0] !== null) {
       const keySet = new Set();
       rows.forEach(r => {
@@ -688,7 +712,7 @@
     }
 
     const normalizedRows = rows.map(r => {
-      const obj = {};
+      const obj = Object.create(null);
       headers.forEach(h => {
         const val = r && r[h] !== undefined && r[h] !== null ? String(r[h]) : '';
         obj[h] = val;
@@ -2688,6 +2712,9 @@
     const renamedVariables = {};
 
     if (opts.renameVariableFrom && opts.renameVariableTo && opts.renameVariableFrom !== opts.renameVariableTo) {
+      if (headers.includes(opts.renameVariableTo)) {
+        throw new Error('Choose a new column name. Renaming to an existing column would overwrite data.');
+      }
       const idx = headers.indexOf(opts.renameVariableFrom);
       if (idx !== -1) {
         headers[idx] = opts.renameVariableTo;
@@ -2711,7 +2738,7 @@
     const seenRowKeys = new Set();
 
     dataset.rows.forEach(rawRow => {
-      const newRow = {};
+      const newRow = Object.create(null);
       dataset.headers.forEach((oldCol, cIdx) => {
         const targetCol = headers[cIdx];
         const prof = profMap.get(oldCol);
@@ -2758,8 +2785,9 @@
       });
 
       if (opts.deduplicateRows) {
-        const idCol = headers.find((h, idx) => initialProfiles[idx] && initialProfiles[idx].effectiveType === SEMANTIC_TYPES.IDENTIFIER);
-        const rowKey = idCol && newRow[idCol] ? `ID:${newRow[idCol]}` : `ROW:${JSON.stringify(newRow)}`;
+        // Repeated identifiers can represent distinct visits or observations.
+        // Only identical original records are safe to deduplicate here.
+        const rowKey = JSON.stringify(dataset.headers.map(h => rawRow[h] ?? ''));
         if (seenRowKeys.has(rowKey)) {
           duplicatesRemoved++;
           return;

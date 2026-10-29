@@ -2,6 +2,12 @@
 node_modules/
 package-lock.json
 
+# Generated browser audit evidence (regenerate with scripts/screenshots/audit_ui.py)
+artifacts/qa/
+# Local evidence and working scripts for separate portfolio / companion-lab tasks
+artifacts/portfolio-update/
+artifacts/ecosystem-upgrade/
+
 # Python
 __pycache__/
 *.py[cod]
