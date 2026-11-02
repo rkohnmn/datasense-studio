@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Generated browser audit evidence (regenerate with scripts/screenshots/audit_ui.py)
 artifacts/qa/
@@ -46,3 +45,5 @@ desktop.ini
 *.swp
 *.swo
 *~
+
+artifacts/accessibility/

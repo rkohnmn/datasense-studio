@@ -206,7 +206,7 @@ assert.ok(readinessBadgeText.includes('Fix this issue before continuing'), 'Dirt
 sandbox.openCompassRoundTripModal().then(() => {
   const rtModalText = sandbox.document.getElementById('compass-rt-modal-body').innerText;
   assert.ok(rtModalText.includes('Operational File-Based Workflow'), 'DataMend modal must clearly present Operational File-Based Workflow');
-  assert.ok(rtModalText.includes('datamend-compass-adapter.js'), 'DataMend modal must transparently explain adapter requirement');
+  assert.ok(sandbox.document.getElementById('compass-rt-modal-body').innerHTML.includes('compass-transfer-launch'), 'DataMend modal must expose the validated workspace transfer');
   assert.ok(rtModalText.includes('Non-Destructive Local Preview'), 'DataMend modal must label in-app cleaning as Non-Destructive Local Preview');
   console.log('ALL_DOM_SCENARIOS_PASSED');
 });

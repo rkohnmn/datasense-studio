@@ -2,6 +2,15 @@
 
 Audit date: October 28, 2026 (America/New_York). The original audit below records the implementation and verification at that time. Subsequent companion-lab work is documented in ECOSYSTEM_UPGRADE.md.
 
+
+## Current release status — November 2, 2026
+
+The October 29 release was pushed to main and its deployments/validation succeeded. Historical pre-publication notes below describe that earlier audit, not the current publication state.
+
+This follow-up implements the real same-origin DataMend workspace round trip with schema, expiry, state, and return-URL validation. The transfer is user-initiated and requires browser IndexedDB; file exchange remains available. Returned values preserve DataMend's approved raw-cell transformations and the original Compass dataset remains restorable. Replayed, missing, expired and storage-denied transfers are covered by real browser tests.
+
+Deployment now depends on Chromium, Firefox and WebKit journeys, the real DataMend round trip, and automated light/dark accessibility checks. Accessibility fixes include contrast, named inputs, scroll-region keyboard access and complete slider values. Tests do not constitute screen-reader or physical-device certification. Dataset limits remain unchanged; synchronous computation still merits profiling before raising them.
+
 ## Commit readiness review — October 29, 2026
 
 The Studio changes were reviewed again for the user-authorized local commit. `npm run build`, `npm test`, and `npm run test:browser` all passed. The Chromium run verified responsive routes and details, six samples, invalid and oversized inputs, inert adversarial column names, stale-read protection, 5,000-row import/export, cleaning restoration, and direct Compass entry, with no uncaught browser errors. The package description's encoding was corrected, and local portfolio/companion-lab artifacts are excluded from Git.

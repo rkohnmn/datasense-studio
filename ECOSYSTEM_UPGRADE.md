@@ -36,7 +36,11 @@ Each repository includes a small `css/product.css` screen stylesheet using its e
 
 Evidence and repeatable browser scripts are in [artifacts/ecosystem-upgrade](artifacts/ecosystem-upgrade/). The baseline and updated screenshots use `before-` and `after-` prefixes; detailed workflow results are in `workflow-results.json`.
 
-## Next substantive work
+## Follow-up status — November 2, 2026
+
+The module-level Compass/DataMend round trip, import-rendering and missing-value fixes, accurate supported script exports, cross-engine release gates, and automated accessibility checks are implemented. See PRODUCT_AUDIT.md for current coverage. The list below is the historical backlog from October 29.
+
+## Original next substantive work
 
 1. **DataMend / Compass interchange:** replace the legacy adapter's assumption of global application state with explicit module integration. Validate actual dataset import, return payload shape, return destination, and storage failure recovery in an end-to-end round trip before enabling the Studio launcher.
 2. **Large-data behavior:** establish measured limits and cancellation/progress behavior for parsing, profiling, chart rendering, and simulation. A successful sample import does not establish an arbitrary-file performance guarantee.

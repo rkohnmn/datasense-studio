@@ -15,7 +15,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  browser-quality:
+    uses: ./.github/workflows/validate.yml
+    permissions:
+      contents: read
   deploy:
+    needs: browser-quality
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

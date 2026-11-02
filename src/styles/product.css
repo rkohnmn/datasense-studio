@@ -111,3 +111,13 @@ html[data-theme="dark"] { --accent-cobalt-tint: #172A48; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Accessible text treatments on the light workspace and vivid swatches. */
+.compass-home-right .find-view-pill { color: var(--ink-primary); }
+.find-avatar-dot { background: #0C604B !important; }
+:root:not([data-theme="dark"]) .readiness-pill.status-READY { color: #0C604B; }
+html[data-theme="dark"] { --accent-cobalt: #93C5FD; --accent-vermilion: #FCA5A5; }
+html[data-theme="dark"] .wb-tab.active { color: #071A13; }
+.pipe-node, #dir-search-input { color: var(--ink-primary); }
+.mobile-menu-btn { color: var(--ink-primary); }
+.skip-link { color: #141619; background: #F6F4EE; }

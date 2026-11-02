@@ -2,17 +2,22 @@
   "name": "datasense-studio",
   "version": "2.0.0",
   "private": true,
-  "description": "DataSense Studio — Flagship public website, DataSense Compass intelligent discovery & quality gate, and unified ecosystem hub for five browser-based statistical laboratories.",
+  "description": "DataSense Studio \u2014 Flagship public website, DataSense Compass intelligent discovery & quality gate, and unified ecosystem hub for five browser-based statistical laboratories.",
   "scripts": {
     "build": "python3 scripts/asset-optimization/build_static.py",
     "serve": "python3 -m http.server 8080 --directory dist",
-    "test": "node tests/test_compass_engine.js && node tests/test_import_regressions.js && python3 tests/unit/test_registry_and_links.py && python3 tests/browser/test_rendered_dom.py",
+    "test": "node tests/test_compass_engine.js && node tests/test_import_regressions.js && node tests/test_handoff_protocol.js && python3 tests/unit/test_registry_and_links.py && python3 tests/browser/test_rendered_dom.py",
     "screenshots": "python3 scripts/screenshots/capture_workspaces.py",
-    "test:browser": "python3 tests/browser/test_real_browser.py"
+    "test:browser": "python3 tests/browser/test_real_browser.py",
+    "test:a11y": "python tests/browser/test_accessibility.py",
+    "test:handoff": "python tests/browser/test_handoff.py"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rkohnmn/datasense-studio"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "axe-core": "4.10.3"
+  }
 }

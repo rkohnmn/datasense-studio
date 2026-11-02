@@ -444,7 +444,7 @@
         return `
           <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${fitY}" stroke="${isHighCook ? '#D9381E' : 'rgba(156,163,175,0.4)'}" stroke-width="1.2" stroke-dasharray="2 2"/>
           ${isHighCook ? `<circle cx="${cx}" cy="${cy}" r="12" fill="rgba(217,56,30,0.22)" stroke="#D9381E" stroke-width="1" stroke-dasharray="2 2"/>` : ''}
-          <circle class="draggable-pt" tabindex="0" role="slider" aria-label="Observation ${i+1} (${x.toFixed(1)}, ${y.toFixed(1)})" data-pt-idx="${i}" cx="${cx}" cy="${cy}" r="6" fill="${fill}" stroke="#090B0E" stroke-width="1.5"/>
+          <circle class="draggable-pt" tabindex="0" role="slider" aria-valuemin="2" aria-valuemax="14" aria-valuenow="${y.toFixed(1)}" aria-valuetext="X ${x.toFixed(1)}, Y ${y.toFixed(1)}" aria-label="Observation ${i+1} (${x.toFixed(1)}, ${y.toFixed(1)})" data-pt-idx="${i}" cx="${cx}" cy="${cy}" r="6" fill="${fill}" stroke="#090B0E" stroke-width="1.5"/>
         `;
       }).join("");
 
@@ -833,7 +833,7 @@
             </table>
           </div>
           ${dState.showRecipe ? `
-            <pre style="margin-top:0.55rem;padding:0.55rem 0.75rem;background:#151921;border:1px solid #262C3A;border-radius:4px;font-family:var(--font-mono);font-size:0.68rem;color:#34D399;overflow-x:auto;"># Reproducible Tidyverse R / AST Pipeline Export (SHA-256: 8f9c2a1e)
+            <pre style="margin-top:0.55rem;padding:0.55rem 0.75rem;background:#151921;border:1px solid #262C3A;border-radius:4px;font-family:var(--font-mono);font-size:0.68rem;color:#34D399;overflow-x:auto;" tabindex="0"># Reproducible Tidyverse R / AST Pipeline Export (SHA-256: 8f9c2a1e)
 df_clean &lt;- df_raw |&gt;
   mutate(visit_date = lubridate::parse_date_time(visit_date, c("mdy", "ymd")),
          cohort_group = stringr::str_to_title(stringr::str_trim(cohort_group)),
@@ -1240,7 +1240,7 @@ steps:
             <span class="inst-mode-badge">IMMUTABLE YAML FLOWSPEC · specs/${curApp.id}.flow.yaml</span>
             <button type="button" class="btn btn-emerald btn-sm" style="padding:0.3rem 0.65rem;font-size:0.73rem;" onclick="copyTextSafe(USER_FLOW_SPECS['${curApp.id}'].yamlSpec, '${curApp.name} FlowSpec YAML')">⎘ Copy FlowSpec YAML</button>
           </div>
-          <pre style="margin:0;padding:0.75rem;background:#090B0E;border:1px solid #262C3A;border-radius:6px;font-family:var(--font-mono);font-size:0.72rem;color:#34D399;overflow-x:auto;line-height:1.5;">${escapeHtml(spec.yamlSpec)}</pre>
+          <pre style="margin:0;padding:0.75rem;background:#090B0E;border:1px solid #262C3A;border-radius:6px;font-family:var(--font-mono);font-size:0.72rem;color:#34D399;overflow-x:auto;line-height:1.5;" tabindex="0">${escapeHtml(spec.yamlSpec)}</pre>
         `;
       }
     }
@@ -2642,7 +2642,7 @@ steps:
               <span>${find.recipeLang}</span>
               <button type="button" class="find-view-pill active" onclick="copyTextSafe(DESIGNEER_FINDS.find(f=>f.id==='${find.id}').recipeCode, '${find.title} recipe')">⎘ Copy Snippet</button>
             </div>
-            <pre style="font-family:var(--font-mono);font-size:0.68rem;color:#E5E7EB;overflow-x:auto;white-space:pre-wrap;line-height:1.45;margin:0;">${escapeHtml(find.recipeCode)}</pre>
+            <pre style="font-family:var(--font-mono);font-size:0.68rem;color:#E5E7EB;overflow-x:auto;white-space:pre-wrap;line-height:1.45;margin:0;" tabindex="0">${escapeHtml(find.recipeCode)}</pre>
             <div style="font-family:var(--font-mono);font-size:0.64rem;color:#9CA3AF;">100% deterministic · Ready for RStudio, Jupyter, or DataSense CLI</div>
           </div>
         `;
@@ -2830,10 +2830,10 @@ steps:
             </div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.45rem;padding:0.4rem 0;">
-            <div style="background:${c1};padding:0.6rem 0.45rem;border-radius:6px;color:#fff;font-family:var(--font-mono);font-size:0.66rem;text-align:center;">
+            <div style="background:${c1};padding:0.6rem 0.45rem;border-radius:6px;color:#090B0E;font-family:var(--font-mono);font-size:0.66rem;text-align:center;">
               <strong>● Emerald</strong><span style="display:block;font-size:0.6rem;opacity:0.9;">ΔL* +42</span>
             </div>
-            <div style="background:${c2};padding:0.6rem 0.45rem;border-radius:6px;color:#fff;font-family:var(--font-mono);font-size:0.66rem;text-align:center;">
+            <div style="background:${c2};padding:0.6rem 0.45rem;border-radius:6px;color:#090B0E;font-family:var(--font-mono);font-size:0.66rem;text-align:center;">
               <strong>▲ Vermilion</strong><span style="display:block;font-size:0.6rem;opacity:0.9;">ΔL* +28</span>
             </div>
             <div style="background:${c3};padding:0.6rem 0.45rem;border-radius:6px;color:#fff;font-family:var(--font-mono);font-size:0.66rem;text-align:center;">
@@ -2859,7 +2859,7 @@ steps:
           </div>
           <button type="button" class="find-view-pill active" onclick="copyTextSafe('${snippets[protoLang].replace(/'/g, "\\'")}', '5-stage pipeline snippet')">⎘ Copy</button>
         </div>
-        <pre style="background:#0D1014;border:1px solid #262C3A;border-radius:6px;padding:0.6rem;font-family:var(--font-mono);font-size:0.68rem;color:#34D399;overflow-x:auto;margin:0;">${escapeHtml(snippets[protoLang])}</pre>
+        <pre style="background:#0D1014;border:1px solid #262C3A;border-radius:6px;padding:0.6rem;font-family:var(--font-mono);font-size:0.68rem;color:#34D399;overflow-x:auto;margin:0;" tabindex="0">${escapeHtml(snippets[protoLang])}</pre>
         <div style="font-family:var(--font-mono);font-size:0.66rem;color:#9CA3AF;display:flex;justify-content:space-between;">
           <span>Zero server uploads · 100% browser-native</span>
           <span style="color:#E5E7EB;">5 Linked Repositories</span>
@@ -3087,91 +3087,36 @@ steps:
       handoffHistory: []
     };
 
-    const COMPASS_DB_NAME = "datasense_compass_handoff_v1";
-    const COMPASS_STORE_NAME = "handoffs";
-    const COMPASS_CHANNEL_NAME = "datasense_compass_channel_v1";
-    let compassBroadcastChannel = null;
-
-    function initCompassHandoffChannel() {
-      if (typeof BroadcastChannel !== "undefined" && !compassBroadcastChannel) {
-        try {
-          compassBroadcastChannel = new BroadcastChannel(COMPASS_CHANNEL_NAME);
-          compassBroadcastChannel.onmessage = (ev) => {
-            const msg = ev.data || {};
-            if (msg.type === "RETURN_READY" && msg.handoffId) {
-              consumeReturnedHandoffFromIDB(msg.handoffId);
-            }
-          };
-        } catch (err) { /* ignore sandboxed BroadcastChannel restriction */ }
-      }
-    }
-
-    function openCompassIDB() {
-      return new Promise((resolve, reject) => {
-        if (typeof indexedDB === "undefined") {
-          return reject(new Error("IndexedDB unavailable in this context"));
-        }
-        const req = indexedDB.open(COMPASS_DB_NAME, 1);
-        req.onupgradeneeded = (e) => {
-          const db = e.target.result;
-          if (!db.objectStoreNames.contains(COMPASS_STORE_NAME)) {
-            db.createObjectStore(COMPASS_STORE_NAME, { keyPath: "handoffId" });
-          }
-        };
-        req.onsuccess = () => resolve(req.result);
-        req.onerror = () => reject(req.error);
-      });
-    }
-
-    async function saveHandoffEnvelopeToIDB(envelope) {
+    async function initCompassHandoffChannel() {
+      if (!location.search) return;
+      const id=new URLSearchParams(location.search).get('compass_return');
+      if (!id) return;
       try {
-        // Compute WebCrypto SHA-256 digest if available
-        if (window.crypto && window.crypto.subtle && typeof TextEncoder !== "undefined") {
-          const payloadBytes = new TextEncoder().encode(JSON.stringify({
-            headers: envelope.dataset.headers,
-            rows: envelope.dataset.rows
-          }));
-          const hashBuffer = await window.crypto.subtle.digest("SHA-256", payloadBytes);
-          const hashArray = Array.from(new Uint8Array(hashBuffer));
-          envelope.integrityDigest = "sha256_" + hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-        }
-        envelope.state = "READY_FOR_TARGET";
-        const db = await openCompassIDB();
-        await new Promise((res, rej) => {
-          const tx = db.transaction(COMPASS_STORE_NAME, "readwrite");
-          tx.objectStore(COMPASS_STORE_NAME).put(envelope);
-          tx.oncomplete = () => res();
-          tx.onerror = () => rej(tx.error);
-        });
-        if (compassBroadcastChannel) {
-          compassBroadcastChannel.postMessage({
-            type: "HANDOFF_READY",
-            handoffId: envelope.handoffId,
-            state: envelope.state
-          });
-        }
-        return true;
-      } catch (err) {
-        return false;
-      }
+        const record=await DataSenseHandoff.read(id);
+        DataSenseHandoff.validateEnvelope(record,id,'RETURN_READY');
+        // Validate through Compass before committing the returned dataset.
+        DataSenseCompassEngine.analyzeDataset(record.cleanedDataset);
+        await DataSenseHandoff.write({...record,state:'RETURN_CONSUMED'});
+        compassState.uncleanedBackupDataset=record.dataset;
+        applyReturnedCleanedDataset(record.cleanedDataset,record.auditSummary,id);
+        navigateTo('compass');
+        const url=new URL(location.href);url.searchParams.delete('compass_return');history.replaceState(null,'',url.href);
+      } catch(e) {showCraftToast(e.message);}
     }
-
-    async function consumeReturnedHandoffFromIDB(handoffId) {
+    async function launchCompassDataMend() {
+      const status=document.getElementById('compass-transfer-status');
+      const button=document.getElementById('compass-transfer-launch');
+      if(button)button.disabled=true;
       try {
-        const db = await openCompassIDB();
-        const record = await new Promise((res, rej) => {
-          const tx = db.transaction(COMPASS_STORE_NAME, "readonly");
-          const req = tx.objectStore(COMPASS_STORE_NAME).get(handoffId);
-          req.onsuccess = () => res(req.result);
-          req.onerror = () => rej(req.error);
-        });
-        if (record && record.cleanedDataset) {
-          record.state = "RETURN_CONSUMED";
-          const tx2 = db.transaction(COMPASS_STORE_NAME, "readwrite");
-          tx2.objectStore(COMPASS_STORE_NAME).put(record);
-          applyReturnedCleanedDataset(record.cleanedDataset, record.auditSummary, record.handoffId);
-        }
-      } catch (err) { /* fallback handled in memory */ }
+        const envelope=DataSenseCompassEngine.createHandoffEnvelope(compassState.lastAnalysis,'datamend');
+        envelope.returnUrl=DataSenseHandoff.safeReturnUrl(location.href).href;
+        envelope.state='READY_FOR_TARGET';
+        DataSenseHandoff.validateEnvelope(envelope,envelope.handoffId,'READY_FOR_TARGET');
+        await DataSenseHandoff.write(envelope);
+        const url=new URL('/datamend-lab/',location.origin);
+        url.searchParams.set('compass_handoff',envelope.handoffId);
+        location.assign(url.href);
+      } catch(e) {if(status)status.textContent=e.message;if(button)button.disabled=false;}
     }
 
     function getActiveCompassDatasetInput() {
@@ -4391,7 +4336,7 @@ steps:
             <button type="button" class="btn btn-secondary btn-sm" style="flex:1;justify-content:center;" onclick="document.getElementById('compass-ws-file-input').click()">↑ Re-Import Cleaned</button>
           </div>
         </div>
-        <div style="max-height:310px;overflow-y:auto;margin-top:0.5rem;">
+        <div style="max-height:310px;overflow-y:auto;margin-top:0.5rem;" tabindex="0">
           ${issuesHtml || `<div style="margin-top:0.6rem;padding:0.6rem;background:var(--accent-emerald-tint);border-radius:4px;font-size:0.78rem;color:var(--accent-emerald);">✓ Zero blocking or caution issues flagged for the active analysis selection.</div>`}
         </div>
       `;
@@ -4665,7 +4610,6 @@ steps:
       const res = compassState.lastAnalysis;
       if (!res) return;
       const envelope = DataSenseCompassEngine.createHandoffEnvelope(res, "datamend");
-      await saveHandoffEnvelopeToIDB(envelope);
       compassState.activeHandoffEnvelope = envelope;
 
       const bd = document.getElementById("compass-roundtrip-backdrop");
@@ -4704,14 +4648,14 @@ steps:
 
         <div style="border:1px solid var(--border-hairline);border-radius:var(--radius-sm);padding:1rem;background:var(--bg-canvas-elevated);">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;">
-            <h4 style="font-family:var(--font-display);font-size:1.12rem;color:var(--ink-primary);">2 · Same-Origin Browser Handoff Protocol &amp; Adapter Status</h4>
-            <span class="compass-type-badge mono-num">datamend-adapter/datamend-compass-adapter.js</span>
+            <h4 style="font-family:var(--font-display);font-size:1.12rem;color:var(--ink-primary);">2 · Continue cleaning in DataMend</h4>
+            <span class="compass-type-badge">Local browser transfer</span>
           </div>
           <p style="font-size:0.78rem;color:var(--ink-secondary);margin-top:0.25rem;line-height:1.46;">
-            The browser handoff is experimental. The <code class="mono-num">datamend-compass-adapter.js</code> adapter exists, but importing the staged dataset into DataMend's workspace and returning its active data are not yet verified end to end. Use the file-based export and re-import workflow above. Browser handoff also requires both apps to share the same origin and have storage available.
+            Open this dataset in DataMend, review and apply cleaning operations, then return the cleaned dataset to Compass. Both applications must be hosted on the same origin. Transfers expire after 24 hours; CSV export remains available if browser storage is blocked.
           </p>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.65rem;">
-            <span class="compass-type-badge">Automatic browser handoff: not ready · Use file export and re-import</span>
+            <button type="button" class="btn btn-emerald btn-sm" id="compass-transfer-launch" onclick="launchCompassDataMend()">Open dataset in DataMend →</button><p id="compass-transfer-status" role="status"></p>
           </div>
         </div>
 
@@ -4779,7 +4723,6 @@ steps:
         compassState.activeHandoffEnvelope.state = "RETURN_CONSUMED";
         compassState.activeHandoffEnvelope.cleanedDataset = cleanedResult.dataset;
         compassState.activeHandoffEnvelope.auditSummary = cleanedResult.auditSummary;
-        await saveHandoffEnvelopeToIDB(compassState.activeHandoffEnvelope);
       }
 
       applyReturnedCleanedDataset(cleanedResult.dataset, cleanedResult.auditSummary, compassState.activeHandoffEnvelope?.handoffId);

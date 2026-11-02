@@ -521,7 +521,7 @@ def main():
     css_text += "\n" + (SRC_DIR / "styles" / "product.css").read_text(encoding="utf-8")
     body_template = (SRC_DIR / "templates" / "body.html").read_text(encoding="utf-8")
     compass_engine_js = COMPASS_ENGINE_PATH.read_text(encoding="utf-8")
-    app_js = (SRC_DIR / "scripts" / "app.js").read_text(encoding="utf-8")
+    app_js = (SRC_DIR / "scripts" / "handoff-protocol.js").read_text(encoding="utf-8") + "\n" + (SRC_DIR / "scripts" / "app.js").read_text(encoding="utf-8")
 
     # Ensure PNG captures exist in public/screenshots from WebP originals
     PUBLIC_SCREENSHOTS.mkdir(parents=True, exist_ok=True)
