@@ -435,6 +435,8 @@
     let currentRow = [];
     let currentField = '';
     let inQuotes = false;
+    let quoteClosed = false;
+    let invalidQuoteSyntax = false;
 
     for (let i = 0; i < text.length; i++) {
       const ch = text[i];
@@ -447,16 +449,20 @@
             i++;
           } else {
             inQuotes = false;
+            quoteClosed = true;
           }
         } else {
           currentField += ch;
         }
       } else {
         if (ch === '"') {
-          inQuotes = true;
+          // RFC 4180 permits opening quotes only at the start of a field.
+          if (currentField.length === 0 && !quoteClosed) inQuotes = true;
+          else invalidQuoteSyntax = true;
         } else if (ch === delimiter) {
           currentRow.push(currentField);
           currentField = '';
+          quoteClosed = false;
         } else if (ch === '\r' || ch === '\n') {
           if (ch === '\r' && nextCh === '\n') {
             i++;
@@ -467,12 +473,22 @@
           }
           currentRow = [];
           currentField = '';
+          quoteClosed = false;
         } else {
+          // Text after a closing quote may not be silently glued to the cell.
+          if (quoteClosed) invalidQuoteSyntax = true;
           currentField += ch;
         }
       }
     }
 
+    if (invalidQuoteSyntax) {
+      parseIssues.push({
+        severity: 'error',
+        code: 'MALFORMED_CSV_QUOTES',
+        message: 'Malformed CSV syntax: quotes must enclose a whole field and nothing may follow a closing quote before the delimiter.'
+      });
+    }
     if (inQuotes) {
       parseIssues.push({
         severity: 'error',
@@ -770,6 +786,14 @@
     return { isNumeric: false, isNonFinite: false, isUnitContaminated: false, raw: str };
   }
 
+  // Date.UTC treats years 00-99 as 1900-1999. Build civil dates without that alias.
+  function makeUtcCalendarMillis(year, month, day, hour = 0, minute = 0, second = 0) {
+    const dt = new Date(0);
+    dt.setUTCFullYear(year, month - 1, day);
+    dt.setUTCHours(hour, minute, second, 0);
+    return dt.getTime();
+  }
+
   function parseTemporalToken(rawStr) {
     const str = String(rawStr).trim();
     if (!str) return { isTemporal: false };
@@ -782,7 +806,7 @@
       if (m < 1 || m > 12 || d < 1 || d > 31) {
         return { isTemporal: false, isInvalidDate: true, raw: str };
       }
-      const dt = Date.UTC(y, m - 1, d);
+      const dt = makeUtcCalendarMillis(y, m, d);
       const check = new Date(dt);
       if (check.getUTCFullYear() === y && check.getUTCMonth() === m - 1 && check.getUTCDate() === d) {
         return { isTemporal: true, kind: 'date', format: 'ISO', epochMs: dt, raw: str };
@@ -790,7 +814,7 @@
       return { isTemporal: false, isInvalidDate: true, raw: str };
     }
 
-    const isoDtMatch = /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/.exec(str);
+    const isoDtMatch = /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?(Z|[+-]\d{2}:\d{2})?$/.exec(str);
     if (isoDtMatch) {
       const y = Number(isoDtMatch[1]);
       const m = Number(isoDtMatch[2]);
@@ -801,7 +825,23 @@
       if (m < 1 || m > 12 || d < 1 || d > 31 || hh > 23 || mm > 59 || ss > 59) {
         return { isTemporal: false, isInvalidDate: true, raw: str };
       }
-      const dt = Date.UTC(y, m - 1, d, hh, mm, ss);
+      let dt = makeUtcCalendarMillis(y, m, d, hh, mm, ss);
+      const check = new Date(dt);
+      if (check.getUTCFullYear() !== y || check.getUTCMonth() !== m - 1 ||
+          check.getUTCDate() !== d || check.getUTCHours() !== hh ||
+          check.getUTCMinutes() !== mm || check.getUTCSeconds() !== ss) {
+        return { isTemporal: false, isInvalidDate: true, raw: str };
+      }
+      const offset = isoDtMatch[7];
+      if (offset && offset !== 'Z') {
+        const hours = Number(offset.slice(1, 3));
+        const minutes = Number(offset.slice(4, 6));
+        if (hours > 14 || (hours === 14 && minutes !== 0) || minutes > 59) {
+          return { isTemporal: false, isInvalidDate: true, raw: str };
+        }
+        const sign = offset[0] === '+' ? 1 : -1;
+        dt -= sign * (hours * 60 + minutes) * 60000;
+      }
       return { isTemporal: true, kind: 'datetime', format: 'ISO_DATETIME', epochMs: dt, raw: str };
     }
 
@@ -816,7 +856,11 @@
       const isAmbiguous = p1 <= 12 && p2 <= 12 && p1 !== p2;
       const m = p1 <= 12 ? p1 : p2;
       const d = p1 <= 12 ? p2 : p1;
-      const dt = Date.UTC(y, m - 1, d);
+      const dt = makeUtcCalendarMillis(y, m, d);
+      const check = new Date(dt);
+      if (check.getUTCFullYear() !== y || check.getUTCMonth() !== m - 1 || check.getUTCDate() !== d) {
+        return { isTemporal: false, isInvalidDate: true, raw: str };
+      }
       return {
         isTemporal: true,
         kind: 'date',
@@ -827,6 +871,9 @@
       };
     }
 
+    if (/^\d{4}-\d{2}-\d{2}[T\s]/.test(str)) {
+      return { isTemporal: false, isInvalidDate: true, raw: str };
+    }
     return { isTemporal: false };
   }
 
@@ -1641,8 +1688,10 @@
       const g0 = groups[1];
       const codedX = [];
       const codedY = [];
-      g1.values.forEach(v => { codedX.push(1); codedY.push(v); });
-      g0.values.forEach(v => { codedX.push(0); codedY.push(v); });
+      // The preview stores only 60 values per group; correlation must use
+      // every matched observation, consistent with validN and eta-squared.
+      groupMap.get(g1.category).forEach(v => { codedX.push(1); codedY.push(v); });
+      groupMap.get(g0.category).forEach(v => { codedX.push(0); codedY.push(v); });
       const pb = computePearsonCorrelation(codedX, codedY);
       if (!pb.isUndefined) {
         pointBiserial = pb.r;
@@ -2825,7 +2874,9 @@
         description: dataset.description,
         headers,
         rows: cleanedRows,
-        parseIssues: [],
+        // Cleaning cell values cannot repair structurally malformed source rows.
+        // Preserve blocking import diagnostics for every downstream readiness gate.
+        parseIssues: (dataset.parseIssues || []).map(issue => ({ ...issue })),
         sourceFormat: 'datasense_json_v1',
         typeOverrides: newTypeOverrides,
         lineage: {
@@ -2901,16 +2952,24 @@
   // =========================================================================
   // 13. REPRODUCIBLE EXPORTS (SECTION 27)
   // =========================================================================
+  /** RFC 4180 quoting plus spreadsheet-formula protection for untrusted cells. */
+  function escapeCSVCell(value) {
+    let str = value !== undefined && value !== null ? String(value) : '';
+    const normalized = str.replace(/^[\u0000-\u0020\uFEFF]+/, '');
+    if (/^[=+@-]/.test(normalized) &&
+        !/^-\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/.test(normalized)) {
+      str = "'" + str;
+    }
+    if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+      return '"' + str.replace(/"/g, '""') + '"';
+    }
+    return str;
+  }
+
   function exportDatasetToCSV(dataset) {
     const headers = dataset.headers || [];
     const rows = dataset.rows || [];
-    const escapeCell = (val) => {
-      const str = val !== undefined && val !== null ? String(val) : '';
-      if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
-        return '"' + str.replace(/"/g, '""') + '"';
-      }
-      return str;
-    };
+    const escapeCell = escapeCSVCell;
     const lines = [headers.map(escapeCell).join(',')];
     rows.forEach(r => {
       lines.push(headers.map(h => escapeCell(r[h])).join(','));
@@ -2937,8 +2996,8 @@
         item.spearmanRho !== null ? item.spearmanRho.toFixed(4) : 'Undefined',
         item.validN,
         item.excludedMissing,
-        `"${(item.undefinedReason || item.strengthLabel).replace(/"/g, '""')}"`
-      ].join(','));
+        item.undefinedReason || item.strengthLabel
+      ].map(escapeCSVCell).join(','));
     });
 
     fam.groupDifferences.forEach(item => {
@@ -2953,8 +3012,8 @@
         item.pointBiserial !== null ? item.pointBiserial.toFixed(4) : 'N/A',
         item.validN,
         item.excludedMissing,
-        `"${(item.undefinedReason || item.strengthLabel).replace(/"/g, '""')}"`
-      ].join(','));
+        item.undefinedReason || item.strengthLabel
+      ].map(escapeCSVCell).join(','));
     });
 
     fam.categoricalAssociations.forEach(item => {
@@ -2969,8 +3028,8 @@
         item.isUndefined ? 'Undefined' : item.chiSquare.toFixed(4),
         item.validN,
         item.excludedMissing,
-        `"${(item.undefinedReason || item.strengthLabel).replace(/"/g, '""')}"`
-      ].join(','));
+        item.undefinedReason || item.strengthLabel
+      ].map(escapeCSVCell).join(','));
     });
 
     fam.temporalSeries.forEach(item => {
@@ -2985,8 +3044,8 @@
         item.lag1Autocorr !== null ? item.lag1Autocorr.toFixed(4) : 'N/A',
         item.validN,
         item.excludedMissing,
-        `"${(item.undefinedReason || item.strengthLabel).replace(/"/g, '""')}"`
-      ].join(','));
+        item.undefinedReason || item.strengthLabel
+      ].map(escapeCSVCell).join(','));
     });
 
     return lines.join('\n');
